@@ -1,26 +1,132 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-dark text-gray-200;
+    }
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@layer components {
+    .container-custom {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
+
+    .btn-primary {
+        @apply px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all duration-300 hover:scale-105;
+    }
+
+    .btn-outline {
+        @apply px-6 py-3 border-2 border-accent text-accent rounded-lg hover:bg-accent/10 transition-all duration-300 hover:scale-105;
+    }
+
+    .card {
+        @apply bg-dark-light rounded-lg border border-dark-lighter hover:border-accent transition-all duration-300;
+    }
+
+    .section-title {
+        @apply text-4xl font-bold mb-8 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+    }
+
+    .skill-tag {
+        @apply px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 text-sm font-medium transition-all duration-300 hover:scale-105;
+    }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Glassmorphism */
+.glass {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom animations */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Gradient text */
+.gradient-text {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-in {
+    animation: slideIn 0.8s ease-out forwards;
+}
+
+/* Stagger children animations */
+.stagger-children>* {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.stagger-children>*:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.stagger-children>*:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.stagger-children>*:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.stagger-children>*:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.stagger-children>*:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+/* Hover effects */
+.hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+}
+
+.hover-glow {
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20;
 }
