@@ -208,7 +208,7 @@ export default function Contact() {
                                 className={`px-4 py-2 ${theme === 'dark' ? 'bg-dark-light' : 'bg-gray-50'} rounded-lg border border-violet/10`}
                             >
                                 <span className="text-violet font-medium">{t.contact.english}:</span>
-                                <span className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} ml-2`}>C2</span>
+                                <span className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} ml-2`}>C1 - B2</span>
                             </motion.span>
                             <motion.span
                                 variants={cardVariants}

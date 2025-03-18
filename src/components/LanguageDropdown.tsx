@@ -25,7 +25,7 @@ export default function LanguageDropdown() {
 
     const languages = [
         { code: 'fr', name: 'Français', flag: '🇫🇷' },
-        { code: 'en', name: 'English', flag: '🇬🇧' }
+        { code: 'en', name: 'English', flag: '🇬🇧' },
     ];
 
     return (
