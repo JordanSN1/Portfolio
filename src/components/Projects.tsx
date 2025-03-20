@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useTheme } from '@/context/ThemeContext';
 import { translations } from '@/translations';
-import Popup from './Popup';
+import ProjectPopup from './ProjectPopup';
 
 interface Project {
     title: string;
@@ -350,7 +350,7 @@ export default function Projects() {
             </div>
 
             {/* Modal pour les repos privés */}
-            <Popup
+            <ProjectPopup
                 isOpen={showPrivateModal}
                 onClose={() => setShowPrivateModal(false)}
                 title={t.projects.privateRepo}
@@ -358,7 +358,7 @@ export default function Projects() {
             />
 
             {/* Modal pour les liens non disponibles */}
-            <Popup
+            <ProjectPopup
                 isOpen={showNotAvailableModal}
                 onClose={() => setShowNotAvailableModal(false)}
                 title={t.common.notAvailable.title}
