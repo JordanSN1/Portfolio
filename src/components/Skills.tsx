@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { FaHtml5, FaCss3Alt, FaPython, FaPhp, FaFigma, FaNodeJs, FaLinux, FaServer, FaNetworkWired, FaCode, FaTools, FaDownload } from 'react-icons/fa';
 import { FaFlutter } from 'react-icons/fa6';
 import { SiJavascript, SiReact, SiVuedotjs, SiDjango, SiSymfony, SiDart, SiC, SiMysql, SiNextdotjs, SiFirebase, SiVmware, SiPfsense, SiCisco, SiSharp } from 'react-icons/si';
+import { DiJava } from 'react-icons/di';
 import { TbBrandFramerMotion, TbWorld } from 'react-icons/tb';
 import { useTheme } from '@/context/ThemeContext';
 import { translations } from '@/translations';
@@ -42,7 +43,8 @@ export default function Skills() {
                 { name: t.skills.technologies.programming.c, icon: <SiC />, level: "beginner" },
                 { name: t.skills.technologies.programming.dart, icon: <SiDart />, level: "intermediate" },
                 { name: t.skills.technologies.programming.php, icon: <FaPhp />, level: "intermediate" },
-                { name: t.skills.technologies.programming.csharp, icon: <SiSharp />, level: "beginner" }
+                { name: t.skills.technologies.programming.csharp, icon: <SiSharp />, level: "beginner" },
+                { name: t.skills.technologies.programming.java, icon: <DiJava />, level: "beginner" }
             ]
         },
         {

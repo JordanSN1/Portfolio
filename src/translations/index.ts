@@ -27,6 +27,7 @@ interface Translations {
                     php: string;
                     javascript: string;
                     csharp: string;
+                    java: string;
                     c: string;
                     dart: string;
                 };
@@ -190,6 +191,7 @@ interface Translations {
                     csharp: string;
                     c: string;
                     dart: string;
+                    java: string;
                 };
                 web: {
                     html: string;
@@ -360,6 +362,7 @@ export const translations: Translations = {
                     php: "PHP",
                     javascript: "JavaScript",
                     csharp: "C#",
+                    java: "Java",
                     c: "C",
                     dart: "Dart"
                 },
@@ -575,7 +578,8 @@ export const translations: Translations = {
                     javascript: "JavaScript",
                     csharp: "C#",
                     c: "C",
-                    dart: "Dart"
+                    dart: "Dart",
+                    java: "Java"
                 },
                 web: {
                     html: "HTML",
