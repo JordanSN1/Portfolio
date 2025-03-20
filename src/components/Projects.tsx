@@ -22,151 +22,113 @@ interface Project {
     isPrivate?: boolean;
 }
 
-const projects: Project[] = [
-    {
-        title: "CyberLearn  - Application mobile",
-        description: [
-            "Application mobile de cours pour particulier sur la cybersécurité et nouvelle technologie",
-            "Stockage des données sur Firebase",
-            "Interface utilisateur intuitive et responsive"
-        ],
-        technologies: ["React-Native", "Firebase"],
-        image: "/images/Log_pricipal_large.png",
-        featured: true,
-        github: "https://github.com/ilyas-design/CyberLearnApp.git",
-        youtube: "https://youtube.com/watch?v=votre-video",
-        context: "Cours 2eme année",
-        date: "Septembre 2024 - Mars 2025",
-        grade: "18/20",
-        isPrivate: true
-    },
-    {
-        title: "CyberLearn - Site web",
-        description: [
-            "Site web pour la présentation du projet CyberLearn, il sert egalement de plateforme web pour l'application mobile",
-            "Systeme de cours dynamique",
-            "Interface utilisateur moderne et responsive"
-        ],
-        technologies: ["NextJS", "Node.js", "Firebase", "Typescript"],
-        image: "/images/Log_pricipal_large.png",
-        featured: true,
-        github: "https://github.com/JordanSN1/cyberlearn-project.git",
-        youtube: "https://youtube.com/watch?v=votre-video",
-        context: "Cours 2eme année",
-        date: "Mars 2025",
-        grade: "Nds",
-        isPrivate: false
-    },
-    {
-        title: "PhantomBurger - Site web",
-        description: [
-            "Site web pour un restaurant",
-            "Système de réservation en ligne",
-            "Interface d'administration intégrée"
-        ],
-        technologies: ["HTML", "CSS", "JavaScript", "PHP"],
-        image: "/images/phantomBurgerlogo.png",
-        github: "https://github.com/JordanSN1/ProjetTMA.git",
-        youtube: "https://youtube.com/watch?v=votre-video",
-        context: "Cours 2eme année",
-        date: "Novembre 2024",
-        grade: "17/20"
-    },
-    {
-        title: "EPSI Zone - Workshop",
-        description: [
-            "Développement d'une application web pour le workshop de l'EPSI, vis la vie d'un étudiant",
-            "Intégration d'une mini visite virtuelle via vidéo",
-            "Interface utilisateur responsive"
-        ],
-        technologies: ["HTML", "CSS", "JavaScript"],
-        image: "/images/EPSIZONE-1-blanc.png",
-        github: "https://github.com/JordanSN1/WorkShop-EpsiZone.git",
-        youtube: "https://youtube.com/watch?v=votre-video",
-        context: "Cours 2eme année",
-        date: "Septembre 2024",
-        grade: "16/20"
-    },
-    {
-        title: "CosmoBazaar - Site web",
-        description: [
-            "Site web concu pour un projet de debut d'année en UX/UI",
-            "Interface en ligne de commande",
-            "Interface utilisateur responsive, et design moderne , UX/UI friendly"
-        ],
-        technologies: ["Figma", "WireFrame"],
-        image: "/images/CosmoBazaar.png",
-        youtube: "https://youtube.com/watch?v=votre-video",
-        context: "Cours 2eme année",
-        date: "Septembre 2024",
-        grade: "19/20"
-    },
-    {
-        title: "Infrastructure de serveurs pour entreprise",
-        description: [
-            "Configuration d'un cluster de serveurs",
-            "Mise en place de la haute disponibilité",
-            "Serveurs, VM, VPN, etc..."
-        ],
-        technologies: ["PFsense", "VMware", "Linux", "Cisco packet tracer"],
-        image: "/images/epsi.jpg",
-        context: "Cours 2eme année",
-        date: "Decembre 2024",
-        grade: "17/20"
-    },
-    {
-        title: "Application console en python pour gestion d'un centre de recherche",
-        description: [
-            "Application console en python pour gestion d'un centre de recherche",
-            "Interface en ligne de commande",
-        ],
-        technologies: ["Python", "Mysql"],
-        image: "/images/python.webp",
-        github: "https://github.com/JordanSN1/ProjetObjetPython.git",
-        youtube: "https://youtube.com/watch?v=votre-video",
-        context: "Cours 1ere année",
-        date: "Janvier 2024",
-        grade: "14/20"
-
-    },
-    {
-        title: "Smart Bike - Site web",
-        description: [
-            "Site web pour un projet a l'apprentisage de PHP I",
-            "Interface en ligne de commande",
-            "Interface utilisateur responsive, et design moderne "
-        ],
-        technologies: ["HTML", "CSS", "JavaScript", "PHP"],
-        image: "/images/smartvelo.png",
-        github: "hvotre-username",
-        youtube: "https://youtube.com/watch?v=votre-video",
-        context: "Cours 1ere année",
-        date: "Decembre 2023",
-        grade: "19/20"
-    },
-    {
-        title: "Base de données Twitch",
-        description: [
-            "Base de données pour un projet a l'apprentisage de SQL",
-            "Recreation d'une base de données de twitch",
-            "60 tables",
-        ],
-        technologies: ["Mysql", "SQL"],
-        image: "/images/twitch.webp",
-        youtube: "https://youtube.com/watch?v=votre-video",
-        context: "Cours 1ere année",
-        date: "Septembre 2023",
-        grade: "16.75/20"
-    },
-
-
-];
-
 export default function Projects() {
     const [showPrivateModal, setShowPrivateModal] = useState(false);
     const [showNotAvailableModal, setShowNotAvailableModal] = useState(false);
     const { language, theme } = useTheme();
     const t = translations[language];
+
+    const projects: Project[] = [
+        {
+            title: t.projects.projects.cyberlearnApp.title,
+            description: t.projects.projects.cyberlearnApp.description,
+            technologies: ["React-Native", "Firebase"],
+            image: "/images/Log_pricipal_large.png",
+            featured: true,
+            github: "https://github.com/ilyas-design/CyberLearnApp.git",
+            youtube: "https://youtube.com/watch?v=votre-video",
+            context: "Cours 2eme année",
+            date: "Septembre 2024 - Mars 2025",
+            grade: "18/20",
+            isPrivate: true
+        },
+        {
+            title: t.projects.projects.cyberlearnWeb.title,
+            description: t.projects.projects.cyberlearnWeb.description,
+            technologies: ["NextJS", "Node.js", "Firebase", "Typescript"],
+            image: "/images/Log_pricipal_large.png",
+            featured: true,
+            github: "https://github.com/JordanSN1/cyberlearn-project.git",
+            youtube: "https://youtube.com/watch?v=votre-video",
+            context: "Cours 2eme année",
+            date: "Mars 2025",
+            grade: "Nds",
+            isPrivate: false
+        },
+        {
+            title: t.projects.projects.phantomBurger.title,
+            description: t.projects.projects.phantomBurger.description,
+            technologies: ["HTML", "CSS", "JavaScript", "PHP"],
+            image: "/images/phantomBurgerlogo.png",
+            github: "https://github.com/JordanSN1/ProjetTMA.git",
+            youtube: "https://youtube.com/watch?v=votre-video",
+            context: "Cours 2eme année",
+            date: "Novembre 2024",
+            grade: "17/20"
+        },
+        {
+            title: t.projects.projects.epsiZone.title,
+            description: t.projects.projects.epsiZone.description,
+            technologies: ["HTML", "CSS", "JavaScript"],
+            image: "/images/EPSIZONE-1-blanc.png",
+            github: "https://github.com/JordanSN1/WorkShop-EpsiZone.git",
+            youtube: "https://youtube.com/watch?v=votre-video",
+            context: "Cours 2eme année",
+            date: "Septembre 2024",
+            grade: "16/20"
+        },
+        {
+            title: t.projects.projects.cosmoBazaar.title,
+            description: t.projects.projects.cosmoBazaar.description,
+            technologies: ["Figma", "WireFrame"],
+            image: "/images/CosmoBazaar.png",
+            youtube: "https://youtube.com/watch?v=votre-video",
+            context: "Cours 2eme année",
+            date: "Septembre 2024",
+            grade: "19/20"
+        },
+        {
+            title: t.projects.projects.infrastructure.title,
+            description: t.projects.projects.infrastructure.description,
+            technologies: ["PFsense", "VMware", "Linux", "Cisco packet tracer"],
+            image: "/images/epsi.jpg",
+            context: "Cours 2eme année",
+            date: "Decembre 2024",
+            grade: "17/20"
+        },
+        {
+            title: t.projects.projects.pythonApp.title,
+            description: t.projects.projects.pythonApp.description,
+            technologies: ["Python", "Mysql"],
+            image: "/images/python.webp",
+            github: "https://github.com/JordanSN1/ProjetObjetPython.git",
+            youtube: "https://youtube.com/watch?v=votre-video",
+            context: "Cours 1ere année",
+            date: "Janvier 2024",
+            grade: "14/20"
+        },
+        {
+            title: t.projects.projects.smartBike.title,
+            description: t.projects.projects.smartBike.description,
+            technologies: ["HTML", "CSS", "JavaScript", "PHP"],
+            image: "/images/smartvelo.png",
+            github: "hvotre-username",
+            youtube: "https://youtube.com/watch?v=votre-video",
+            context: "Cours 1ere année",
+            date: "Decembre 2023",
+            grade: "19/20"
+        },
+        {
+            title: t.projects.projects.twitchDb.title,
+            description: t.projects.projects.twitchDb.description,
+            technologies: ["Mysql", "SQL"],
+            image: "/images/twitch.webp",
+            youtube: "https://youtube.com/watch?v=votre-video",
+            context: "Cours 1ere année",
+            date: "Septembre 2023",
+            grade: "16.75/20"
+        }
+    ];
 
     const containerVariants = {
         hidden: {},

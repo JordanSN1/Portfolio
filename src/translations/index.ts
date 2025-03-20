@@ -21,6 +21,37 @@ interface Translations {
             description: string;
             categories: Record<CategoryKey, string>;
             levels: Record<LevelKey, string>;
+            technologies: {
+                programming: {
+                    python: string;
+                    php: string;
+                    javascript: string;
+                    csharp: string;
+                    c: string;
+                    dart: string;
+                };
+                web: {
+                    html: string;
+                    css: string;
+                    react: string;
+                    vue: string;
+                    nextjs: string;
+                    django: string;
+                    symfony: string;
+                    mysql: string;
+                };
+                frameworks: {
+                    flutter: string;
+                    nodejs: string;
+                    firebase: string;
+                    framerMotion: string;
+                    figma: string;
+                    linux: string;
+                    vmware: string;
+                    pfsense: string;
+                    cisco: string;
+                };
+            };
         };
         experience: {
             title: string;
@@ -60,6 +91,44 @@ interface Translations {
                 secondYear: string;
                 personal: string;
             };
+            projects: {
+                cyberlearnApp: {
+                    title: string;
+                    description: string[];
+                };
+                cyberlearnWeb: {
+                    title: string;
+                    description: string[];
+                };
+                phantomBurger: {
+                    title: string;
+                    description: string[];
+                };
+                epsiZone: {
+                    title: string;
+                    description: string[];
+                };
+                cosmoBazaar: {
+                    title: string;
+                    description: string[];
+                };
+                infrastructure: {
+                    title: string;
+                    description: string[];
+                };
+                pythonApp: {
+                    title: string;
+                    description: string[];
+                };
+                smartBike: {
+                    title: string;
+                    description: string[];
+                };
+                twitchDb: {
+                    title: string;
+                    description: string[];
+                };
+            };
         };
         contact: {
             title: string;
@@ -86,6 +155,11 @@ interface Translations {
             notAvailable: {
                 title: string;
                 message: string;
+            };
+            downloadCV: {
+                title: string;
+                message: string;
+                button: string;
             };
         };
     };
@@ -108,6 +182,37 @@ interface Translations {
             description: string;
             categories: Record<CategoryKey, string>;
             levels: Record<LevelKey, string>;
+            technologies: {
+                programming: {
+                    python: string;
+                    php: string;
+                    javascript: string;
+                    csharp: string;
+                    c: string;
+                    dart: string;
+                };
+                web: {
+                    html: string;
+                    css: string;
+                    react: string;
+                    vue: string;
+                    nextjs: string;
+                    django: string;
+                    symfony: string;
+                    mysql: string;
+                };
+                frameworks: {
+                    flutter: string;
+                    nodejs: string;
+                    firebase: string;
+                    framerMotion: string;
+                    figma: string;
+                    linux: string;
+                    vmware: string;
+                    pfsense: string;
+                    cisco: string;
+                };
+            };
         };
         experience: {
             title: string;
@@ -147,6 +252,44 @@ interface Translations {
                 secondYear: string;
                 personal: string;
             };
+            projects: {
+                cyberlearnApp: {
+                    title: string;
+                    description: string[];
+                };
+                cyberlearnWeb: {
+                    title: string;
+                    description: string[];
+                };
+                phantomBurger: {
+                    title: string;
+                    description: string[];
+                };
+                epsiZone: {
+                    title: string;
+                    description: string[];
+                };
+                cosmoBazaar: {
+                    title: string;
+                    description: string[];
+                };
+                infrastructure: {
+                    title: string;
+                    description: string[];
+                };
+                pythonApp: {
+                    title: string;
+                    description: string[];
+                };
+                smartBike: {
+                    title: string;
+                    description: string[];
+                };
+                twitchDb: {
+                    title: string;
+                    description: string[];
+                };
+            };
         };
         contact: {
             title: string;
@@ -173,6 +316,11 @@ interface Translations {
             notAvailable: {
                 title: string;
                 message: string;
+            };
+            downloadCV: {
+                title: string;
+                message: string;
+                button: string;
             };
         };
     };
@@ -205,6 +353,37 @@ export const translations: Translations = {
                 advanced: "Avancé",
                 intermediate: "Intermédiaire",
                 beginner: "Débutant"
+            },
+            technologies: {
+                programming: {
+                    python: "Python",
+                    php: "PHP",
+                    javascript: "JavaScript",
+                    csharp: "C#",
+                    c: "C",
+                    dart: "Dart"
+                },
+                web: {
+                    html: "HTML",
+                    css: "CSS",
+                    react: "React",
+                    vue: "Vue.js",
+                    nextjs: "Next.js",
+                    django: "Django",
+                    symfony: "Symfony",
+                    mysql: "MySQL"
+                },
+                frameworks: {
+                    flutter: "Flutter",
+                    nodejs: "Node.js",
+                    firebase: "Firebase",
+                    framerMotion: "Framer Motion",
+                    figma: "Figma",
+                    linux: "Linux",
+                    vmware: "VMware",
+                    pfsense: "pfSense",
+                    cisco: "Cisco"
+                }
             }
         },
         experience: {
@@ -254,6 +433,79 @@ export const translations: Translations = {
                 firstYear: "Cours 1ere année",
                 secondYear: "Cours 2eme année",
                 personal: "Personnel"
+            },
+            projects: {
+                cyberlearnApp: {
+                    title: "CyberLearn - Application mobile",
+                    description: [
+                        "Application mobile de cours pour particulier sur la cybersécurité et nouvelle technologie",
+                        "Stockage des données sur Firebase",
+                        "Interface utilisateur intuitive et responsive"
+                    ]
+                },
+                cyberlearnWeb: {
+                    title: "CyberLearn - Site web",
+                    description: [
+                        "Site web pour la présentation du projet CyberLearn, il sert egalement de plateforme web pour l'application mobile",
+                        "Systeme de cours dynamique",
+                        "Interface utilisateur moderne et responsive"
+                    ]
+                },
+                phantomBurger: {
+                    title: "PhantomBurger - Site web",
+                    description: [
+                        "Site web pour un restaurant",
+                        "Système de réservation en ligne",
+                        "Interface d'administration intégrée"
+                    ]
+                },
+                epsiZone: {
+                    title: "EPSI Zone - Workshop",
+                    description: [
+                        "Développement d'une application web pour le workshop de l'EPSI, vis la vie d'un étudiant",
+                        "Intégration d'une mini visite virtuelle via vidéo",
+                        "Interface utilisateur responsive"
+                    ]
+                },
+                cosmoBazaar: {
+                    title: "CosmoBazaar - Site web",
+                    description: [
+                        "Site web concu pour un projet de debut d'année en UX/UI",
+                        "Interface en ligne de commande",
+                        "Interface utilisateur responsive, et design moderne , UX/UI friendly"
+                    ]
+                },
+                infrastructure: {
+                    title: "Infrastructure de serveurs pour entreprise",
+                    description: [
+                        "Configuration d'un cluster de serveurs",
+                        "Mise en place de la haute disponibilité",
+                        "Serveurs, VM, VPN, etc..."
+                    ]
+                },
+                pythonApp: {
+                    title: "Application console en python pour gestion d'un centre de recherche",
+                    description: [
+                        "Application console en python pour gestion d'un centre de recherche",
+                        "Interface en ligne de commande"
+                    ]
+                },
+                smartBike: {
+                    title: "Smart Bike - Site web",
+                    description: [
+                        "Site web pour un projet a l'apprentisage de PHP I",
+                        "Interface en ligne de commande",
+                        "Interface utilisateur responsive, et design moderne"
+                    ]
+                },
+                twitchDb: {
+                    title: "Base de données Twitch",
+                    description: [
+                        "Base de données pour un projet a l'apprentisage de SQL",
+                        "Recreation d'une base de données de twitch",
+                        "60 tables"
+                    ]
+                }
             }
         },
         contact: {
@@ -281,6 +533,11 @@ export const translations: Translations = {
             notAvailable: {
                 title: "Non disponible",
                 message: "Cette fonctionnalité n'est pas encore disponible. Revenez plus tard !"
+            },
+            downloadCV: {
+                title: "Télécharger le CV",
+                message: "Voulez-vous télécharger mon CV au format PDF ?",
+                button: "Télécharger"
             }
         }
     },
@@ -310,6 +567,37 @@ export const translations: Translations = {
                 advanced: "Advanced",
                 intermediate: "Intermediate",
                 beginner: "Beginner"
+            },
+            technologies: {
+                programming: {
+                    python: "Python",
+                    php: "PHP",
+                    javascript: "JavaScript",
+                    csharp: "C#",
+                    c: "C",
+                    dart: "Dart"
+                },
+                web: {
+                    html: "HTML",
+                    css: "CSS",
+                    react: "React",
+                    vue: "Vue.js",
+                    nextjs: "Next.js",
+                    django: "Django",
+                    symfony: "Symfony",
+                    mysql: "MySQL"
+                },
+                frameworks: {
+                    flutter: "Flutter",
+                    nodejs: "Node.js",
+                    firebase: "Firebase",
+                    framerMotion: "Framer Motion",
+                    figma: "Figma",
+                    linux: "Linux",
+                    vmware: "VMware",
+                    pfsense: "pfSense",
+                    cisco: "Cisco"
+                }
             }
         },
         experience: {
@@ -359,6 +647,79 @@ export const translations: Translations = {
                 firstYear: "First Year Course",
                 secondYear: "Second Year Course",
                 personal: "Personal"
+            },
+            projects: {
+                cyberlearnApp: {
+                    title: "CyberLearn - Mobile App",
+                    description: [
+                        "Mobile application for cybersecurity and new technology courses for individuals",
+                        "Data storage on Firebase",
+                        "Intuitive and responsive user interface"
+                    ]
+                },
+                cyberlearnWeb: {
+                    title: "CyberLearn - Website",
+                    description: [
+                        "Website for presenting the CyberLearn project, also serving as a web platform for the mobile app",
+                        "Dynamic course system",
+                        "Modern and responsive user interface"
+                    ]
+                },
+                phantomBurger: {
+                    title: "PhantomBurger - Website",
+                    description: [
+                        "Website for a restaurant",
+                        "Online reservation system",
+                        "Integrated admin interface"
+                    ]
+                },
+                epsiZone: {
+                    title: "EPSI Zone - Workshop",
+                    description: [
+                        "Development of a web application for the EPSI workshop, experience student life",
+                        "Integration of a mini virtual tour via video",
+                        "Responsive user interface"
+                    ]
+                },
+                cosmoBazaar: {
+                    title: "CosmoBazaar - Website",
+                    description: [
+                        "Website designed for a UX/UI beginning of year project",
+                        "Online ordering interface",
+                        "Responsive user interface with modern design, UX/UI friendly"
+                    ]
+                },
+                infrastructure: {
+                    title: "Enterprise Server Infrastructure",
+                    description: [
+                        "Server cluster configuration",
+                        "High availability setup",
+                        "Servers, VMs, VPN, etc..."
+                    ]
+                },
+                pythonApp: {
+                    title: "Python Console Application for Research Center Management",
+                    description: [
+                        "Python console application for research center management",
+                        "Command line interface"
+                    ]
+                },
+                smartBike: {
+                    title: "Smart Bike - Website",
+                    description: [
+                        "Website for a PHP I learning project",
+                        "Online ordering interface",
+                        "Responsive user interface with modern design"
+                    ]
+                },
+                twitchDb: {
+                    title: "Twitch Database",
+                    description: [
+                        "Database for a SQL learning project",
+                        "Recreation of a Twitch database",
+                        "60 tables"
+                    ]
+                }
             }
         },
         contact: {
@@ -386,6 +747,11 @@ export const translations: Translations = {
             notAvailable: {
                 title: "Not available",
                 message: "This feature is not available yet. Please check back later!"
+            },
+            downloadCV: {
+                title: "Download CV",
+                message: "Would you like to download my CV in PDF format?",
+                button: "Download"
             }
         }
     }
