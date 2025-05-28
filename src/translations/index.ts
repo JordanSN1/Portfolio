@@ -340,8 +340,8 @@ export const translations: Translations = {
         },
         hero: {
             greeting: "Bonjour, je suis",
-            role: "Développeur Full Stack",
-            description: "Étudiant en Bachelor Informatique avec une expertise en développement web et mobile et cybersécurité."
+            role: "Étudiant en Cybersécurité & Réseaux",
+            description: "Étudiant en Bachelor Informatique en recherche d'alternance en cybersécurité et infrastructure réseau."
         },
         skills: {
             title: "Compétences",
@@ -526,7 +526,7 @@ export const translations: Translations = {
             levelB1: "Niveau intermédiaire"
         },
         footer: {
-            description: "Développeur et cybersécurité passionné. 20 ans en recherche d'alternance pour 2025 - 2026.",
+            description: "Étudiant passionné par la cybersécurité et les réseaux. 20 ans en recherche d'alternance pour 2025 - 2026.",
             quickNav: "Navigation Rapide",
             followMe: "Me Suivre",
             rights: "Tous droits réservés."
@@ -555,8 +555,8 @@ export const translations: Translations = {
         },
         hero: {
             greeting: "Hi, I'm",
-            role: "Full Stack Developer",
-            description: "Bachelor's student in Computer Science with expertise in web and mobile development and cybersecurity."
+            role: "Cybersecurity & Network Student",
+            description: "Bachelor's student in Computer Science looking for an apprenticeship in cybersecurity and network infrastructure."
         },
         skills: {
             title: "Skills",
@@ -741,7 +741,7 @@ export const translations: Translations = {
             levelB1: "Intermediate"
         },
         footer: {
-            description: "Passionate developer and cybersecurity enthusiast. 20 years old looking for an apprenticeship for 2025 - 2026.",
+            description: "Student passionate about cybersecurity and networks. 20 years old looking for an apprenticeship for 2025 - 2026.",
             quickNav: "Quick Navigation",
             followMe: "Follow Me",
             rights: "All rights reserved."
