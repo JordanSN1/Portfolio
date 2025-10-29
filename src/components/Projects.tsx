@@ -1,7 +1,8 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaYoutube, FaLock } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaShieldAlt, FaCode, FaMobileAlt, FaServer, FaPalette, FaLaptopCode } from 'react-icons/fa';
+import { MdApps } from 'react-icons/md';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useTheme } from '@/context/ThemeContext';
@@ -20,11 +21,14 @@ interface Project {
     context: "Stage" | "Cours 1ere année" | "Cours 2eme année" | "Personnel";
     date: string;
     isPrivate?: boolean;
+    category: "cyber" | "web" | "mobile" | "infrastructure" | "design" | "dev";
 }
 
+type ProjectCategory = "all" | "cyber" | "web" | "mobile" | "infrastructure" | "design" | "dev";
+
 export default function Projects() {
-    const [showPrivateModal, setShowPrivateModal] = useState(false);
-    const [showNotAvailableModal, setShowNotAvailableModal] = useState(false);
+    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+    const [activeFilter, setActiveFilter] = useState<ProjectCategory>("all");
     const { language, theme } = useTheme();
     const t = translations[language];
 
@@ -40,7 +44,8 @@ export default function Projects() {
             context: "Cours 2eme année",
             date: "Septembre 2024 - Mars 2025",
             grade: "18/20",
-            isPrivate: true
+            isPrivate: true,
+            category: "mobile"
         },
         {
             title: t.projects.projects.cyberlearnWeb.title,
@@ -53,7 +58,8 @@ export default function Projects() {
             context: "Cours 2eme année",
             date: "Mars 2025",
             grade: "Nds",
-            isPrivate: false
+            isPrivate: false,
+            category: "web"
         },
         {
             title: t.projects.projects.phantomBurger.title,
@@ -64,7 +70,8 @@ export default function Projects() {
             youtube: "https://youtube.com/watch?v=votre-video",
             context: "Cours 2eme année",
             date: "Novembre 2024",
-            grade: "17/20"
+            grade: "17/20",
+            category: "web"
         },
         {
             title: t.projects.projects.epsiZone.title,
@@ -75,7 +82,8 @@ export default function Projects() {
             youtube: "https://youtube.com/watch?v=votre-video",
             context: "Cours 2eme année",
             date: "Septembre 2024",
-            grade: "16/20"
+            grade: "16/20",
+            category: "web"
         },
         {
             title: t.projects.projects.cosmoBazaar.title,
@@ -85,7 +93,8 @@ export default function Projects() {
             youtube: "https://youtube.com/watch?v=votre-video",
             context: "Cours 2eme année",
             date: "Septembre 2024",
-            grade: "19/20"
+            grade: "19/20",
+            category: "design"
         },
         {
             title: t.projects.projects.infrastructure.title,
@@ -94,7 +103,8 @@ export default function Projects() {
             image: "/images/epsi.jpg",
             context: "Cours 2eme année",
             date: "Decembre 2024",
-            grade: "17/20"
+            grade: "17/20",
+            category: "infrastructure"
         },
         {
             title: t.projects.projects.pythonApp.title,
@@ -105,7 +115,8 @@ export default function Projects() {
             youtube: "https://youtube.com/watch?v=votre-video",
             context: "Cours 1ere année",
             date: "Janvier 2024",
-            grade: "14/20"
+            grade: "14/20",
+            category: "dev"
         },
         {
             title: t.projects.projects.smartBike.title,
@@ -116,7 +127,8 @@ export default function Projects() {
             youtube: "https://youtube.com/watch?v=votre-video",
             context: "Cours 1ere année",
             date: "Decembre 2023",
-            grade: "19/20"
+            grade: "19/20",
+            category: "web"
         },
         {
             title: t.projects.projects.twitchDb.title,
@@ -126,7 +138,8 @@ export default function Projects() {
             youtube: "https://youtube.com/watch?v=votre-video",
             context: "Cours 1ere année",
             date: "Septembre 2023",
-            grade: "16.75/20"
+            grade: "16.75/20",
+            category: "dev"
         }
     ];
 
@@ -195,10 +208,38 @@ export default function Projects() {
         return new Date(parseInt(year), months[month], 1);
     };
 
-    // Trier les projets par date
-    const sortedProjects = [...projects].sort((a, b) => {
+    // Trier et filtrer les projets
+    const filteredProjects = activeFilter === "all" 
+        ? projects 
+        : projects.filter(project => project.category === activeFilter);
+    
+    const sortedProjects = [...filteredProjects].sort((a, b) => {
         return parseDate(b.date).getTime() - parseDate(a.date).getTime();
     });
+
+    const filterCategories: ProjectCategory[] = ["all", "cyber", "web", "mobile", "infrastructure", "design", "dev"];
+
+    const getCategoryIcon = (category: ProjectCategory) => {
+        const iconClass = "text-base";
+        switch (category) {
+            case "all":
+                return <MdApps className={iconClass} />;
+            case "cyber":
+                return <FaShieldAlt className={iconClass} />;
+            case "web":
+                return <FaCode className={iconClass} />;
+            case "mobile":
+                return <FaMobileAlt className={iconClass} />;
+            case "infrastructure":
+                return <FaServer className={iconClass} />;
+            case "design":
+                return <FaPalette className={iconClass} />;
+            case "dev":
+                return <FaLaptopCode className={iconClass} />;
+            default:
+                return null;
+        }
+    };
 
     const modalVariants = {
         hidden: {
@@ -216,24 +257,6 @@ export default function Projects() {
         }
     };
 
-    const handleGithubClick = (project: Project) => {
-        if (project.isPrivate) {
-            setShowPrivateModal(true);
-        } else if (!project.github || project.github.includes('votre-username')) {
-            setShowNotAvailableModal(true);
-        } else {
-            window.open(project.github, '_blank');
-        }
-    };
-
-    const handleYoutubeClick = (project: Project) => {
-        if (!project.youtube || project.youtube.includes('votre-video')) {
-            setShowNotAvailableModal(true);
-        } else {
-            window.open(project.youtube, '_blank');
-        }
-    };
-
     return (
         <section id="projects" className={`py-20 ${theme === 'dark' ? 'bg-dark' : 'bg-white'}`}>
             <div className="container-custom">
@@ -242,128 +265,141 @@ export default function Projects() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: false }}
-                    className="text-center mb-16"
+                    className="text-center mb-12"
                 >
-                    <h2 className={`text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-dark'} mb-4`}>
+                    <h2 className={`text-4xl font-bold ${theme === 'dark' ? 'text-white' : 'text-dark'} mb-4`}>
                         {t.projects.title}
                     </h2>
-                    <p className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} max-w-2xl mx-auto`}>
+                    <p className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} max-w-2xl mx-auto mb-8`}>
                         {t.projects.description}
                     </p>
+
+                    {/* Filtres de catégories */}
+                    <div className="flex flex-wrap justify-center gap-3 mt-8" role="group" aria-label="Filtrer les projets par catégorie">
+                        {filterCategories.map((category) => (
+                            <motion.button
+                                key={category}
+                                onClick={() => setActiveFilter(category)}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 ${theme === 'dark' ? 'focus:ring-offset-dark' : 'focus:ring-offset-white'} ${
+                                    activeFilter === category
+                                        ? 'bg-gradient-to-r from-violet to-purple-600 text-white shadow-lg shadow-violet/30'
+                                        : theme === 'dark'
+                                        ? 'bg-dark-light text-gray-custom hover:bg-violet/10 hover:text-violet border border-violet/20'
+                                        : 'bg-white text-gray-700 hover:bg-violet/10 hover:text-violet border border-gray-200 hover:border-violet/30'
+                                }`}
+                                aria-pressed={activeFilter === category}
+                                aria-label={`Filtrer par ${t.projects.filters[category]}`}
+                            >
+                                <span aria-hidden="true">{getCategoryIcon(category)}</span>
+                                {t.projects.filters[category]}
+                            </motion.button>
+                        ))}
+                    </div>
                 </motion.div>
 
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: false }}
-                    className="grid gap-8 md:grid-cols-2"
-                >
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={activeFilter}
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                        className="grid gap-8 md:grid-cols-2 max-w-6xl mx-auto"
+                    >
                     {sortedProjects.map((project, index) => (
                         <motion.div
                             key={index}
                             variants={cardVariants}
-                            className={`group relative ${theme === 'dark' ? 'bg-dark' : 'bg-white'} rounded-xl overflow-hidden border border-violet/10 hover:border-violet/30 transition-all duration-300`}
+                            className={`group ${theme === 'dark' ? 'bg-dark-light/50' : 'bg-white'} rounded-2xl overflow-hidden border ${theme === 'dark' ? 'border-violet/10' : 'border-gray-200'} hover:border-violet/40 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col`}
                         >
-                            <div className={`relative h-80 overflow-hidden ${theme === 'dark' ? 'bg-dark-light' : 'bg-gray-50'}`}>
+                            {/* Image Container - Plus grande et mieux intégrée */}
+                            <div className={`relative h-56 ${theme === 'dark' ? 'bg-gradient-to-br from-violet/5 via-dark-light to-purple-600/5' : 'bg-gradient-to-br from-violet/5 via-gray-50 to-purple-600/5'} flex items-center justify-center p-8`}>
                                 <Image
                                     src={project.image}
                                     alt={project.title}
                                     fill
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                    className="object-contain transition-transform duration-300 group-hover:scale-105"
-                                    style={{ padding: '2rem' }}
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                    className="object-contain transition-all duration-500 group-hover:scale-105 drop-shadow-2xl"
                                 />
-                                <div className={`absolute inset-0 bg-gradient-to-t from-${theme === 'dark' ? 'dark/90' : 'white/90'} to-transparent`} />
-                                {project.featured && (
-                                    <span className="absolute top-4 right-4 px-3 py-1 bg-violet text-white rounded-full text-sm">
-                                        {t.projects.featured}
-                                    </span>
-                                )}
-                            </div>
-                            <div className="p-6">
-                                <div className="flex justify-between items-start mb-2">
-                                    <h3 className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-dark'}`}>
-                                        {project.title}
-                                    </h3>
+                                
+                                {/* Badges en haut */}
+                                <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10">
+                                    {project.featured && (
+                                        <span className="px-3 py-1.5 bg-violet/90 backdrop-blur-xl text-white rounded-full text-xs font-bold shadow-lg border border-white/20">
+                                            ⭐ {t.projects.featured}
+                                        </span>
+                                    )}
                                     {project.grade && (
-                                        <span className="px-3 py-1 bg-orange/10 text-orange rounded-full text-sm">
-                                            {project.grade}
+                                        <span className="px-3 py-1.5 bg-orange/90 backdrop-blur-xl text-white rounded-full text-xs font-bold shadow-lg border border-white/20 ml-auto">
+                                            📊 {project.grade}
                                         </span>
                                     )}
                                 </div>
-                                <div className="flex items-center gap-4 mb-4">
-                                    <span className="text-violet text-sm">
-                                        {project.context === "Stage" && t.projects.context.stage}
-                                        {project.context === "Cours 1ere année" && t.projects.context.firstYear}
-                                        {project.context === "Cours 2eme année" && t.projects.context.secondYear}
-                                        {project.context === "Personnel" && t.projects.context.personal}
-                                    </span>
-                                    <span className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} text-sm`}>•</span>
-                                    <span className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} text-sm`}>{project.date}</span>
+                            </div>
+
+                            {/* Content */}
+                            <div className="p-6 flex flex-col flex-grow">
+                                {/* Header */}
+                                <div className="mb-4">
+                                    <h3 className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-dark'} mb-2`}>
+                                        {project.title}
+                                    </h3>
+                                    <div className="flex items-center gap-3 text-sm">
+                                        <span className="px-2.5 py-1 bg-violet/10 text-violet rounded-lg font-medium">
+                                            {project.context === "Stage" && t.projects.context.stage}
+                                            {project.context === "Cours 1ere année" && t.projects.context.firstYear}
+                                            {project.context === "Cours 2eme année" && t.projects.context.secondYear}
+                                            {project.context === "Personnel" && t.projects.context.personal}
+                                        </span>
+                                        <span className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} text-sm`}>
+                                            {project.date}
+                                        </span>
+                                    </div>
                                 </div>
-                                <ul className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} mb-4 space-y-2`}>
-                                    {project.description.map((item, i) => (
-                                        <li key={i} className="flex items-start">
-                                            <span className="text-violet mr-2">•</span>
-                                            {item}
-                                        </li>
-                                    ))}
-                                </ul>
-                                <div className="flex flex-wrap gap-2 mb-4">
+
+                                {/* Description */}
+                                <p className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} text-sm mb-4 line-clamp-3 leading-relaxed`}>
+                                    {project.description[0]}
+                                </p>
+
+                                {/* Technologies Grid */}
+                                <div className="flex flex-wrap gap-2 mb-5 flex-grow">
                                     {project.technologies.map((tech, i) => (
                                         <span
                                             key={i}
-                                            className="px-3 py-1 bg-violet/10 text-violet rounded-full text-sm"
+                                            className={`px-3 py-1.5 text-xs font-medium rounded-lg ${theme === 'dark' ? 'bg-dark text-gray-custom' : 'bg-gray-100 text-gray-700'} border ${theme === 'dark' ? 'border-violet/20' : 'border-gray-200'} hover:border-violet hover:text-violet transition-all duration-200 h-fit`}
                                         >
                                             {tech}
                                         </span>
                                     ))}
                                 </div>
-                                <div className="flex gap-4">
-                                    {project.github && (
-                                        <button
-                                            onClick={() => handleGithubClick(project)}
-                                            className={`flex items-center gap-2 ${theme === 'dark' ? 'text-gray-custom hover:text-violet' : 'text-gray-600 hover:text-violet'} transition-colors`}
-                                        >
-                                            <FaGithub className="text-xl" />
-                                            <span>{t.projects.github}</span>
-                                            {project.isPrivate && (
-                                                <FaLock className="text-sm" />
-                                            )}
-                                        </button>
-                                    )}
-                                    {project.youtube && (
-                                        <button
-                                            onClick={() => handleYoutubeClick(project)}
-                                            className={`flex items-center gap-2 ${theme === 'dark' ? 'text-gray-custom hover:text-violet' : 'text-gray-600 hover:text-violet'} transition-colors`}
-                                        >
-                                            <FaYoutube className="text-xl" />
-                                            <span>{t.projects.youtube}</span>
-                                        </button>
-                                    )}
-                                </div>
+
+                                {/* CTA Button */}
+                                <button
+                                    onClick={() => setSelectedProject(project)}
+                                    className="w-full py-3 bg-gradient-to-r from-violet via-purple-600 to-violet bg-size-200 bg-pos-0 hover:bg-pos-100 text-white rounded-xl font-semibold transition-all duration-500 flex items-center justify-center gap-2 shadow-lg shadow-violet/30 hover:shadow-xl hover:shadow-violet/50 group focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 focus:ring-offset-dark"
+                                    aria-label={`Voir les détails du projet ${project.title}`}
+                                >
+                                    <span>{language === 'fr' ? 'Voir le projet' : 'View project'}</span>
+                                    <FaExternalLinkAlt className="text-sm group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true" />
+                                </button>
                             </div>
                         </motion.div>
                     ))}
                 </motion.div>
+                </AnimatePresence>
             </div>
 
-            {/* Modal pour les repos privés */}
-            <ProjectPopup
-                isOpen={showPrivateModal}
-                onClose={() => setShowPrivateModal(false)}
-                title={t.projects.privateRepo}
-                message={t.projects.privateRepoMessage}
-            />
-
-            {/* Modal pour les liens non disponibles */}
-            <ProjectPopup
-                isOpen={showNotAvailableModal}
-                onClose={() => setShowNotAvailableModal(false)}
-                title={t.common.notAvailable.title}
-                message={t.common.notAvailable.message}
-            />
+            {/* Modal détaillé pour chaque projet */}
+            {selectedProject && (
+                <ProjectPopup
+                    isOpen={!!selectedProject}
+                    onClose={() => setSelectedProject(null)}
+                    project={selectedProject}
+                />
+            )}
         </section>
     );
 } 

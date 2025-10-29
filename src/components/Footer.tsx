@@ -17,7 +17,7 @@ export default function Footer() {
     };
 
     return (
-        <footer className={`${theme === 'dark' ? 'bg-dark-light' : 'bg-gray-50'} border-t border-violet/10`}>
+        <footer className={`${theme === 'dark' ? 'bg-dark-light' : 'bg-gray-50'} border-t border-violet/10`} role="contentinfo">
             <div className="container-custom py-12">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {/* Logo et Description */}
@@ -46,12 +46,13 @@ export default function Footer() {
                         className="space-y-4"
                     >
                         <h4 className={`${theme === 'dark' ? 'text-white' : 'text-dark'} font-semibold`}>{t.footer.quickNav}</h4>
-                        <nav className="grid grid-cols-2 gap-2">
-                            <a href="#" className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} hover:text-violet transition-colors`}>{t.nav.about}</a>
-                            <a href="#projects" className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} hover:text-violet transition-colors`}>{t.nav.projects}</a>
-                            <a href="#skills" className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} hover:text-violet transition-colors`}>{t.nav.skills}</a>
-                            <a href="#experience" className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} hover:text-violet transition-colors`}>{t.nav.experience}</a>
-                            <a href="#contact" className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} hover:text-violet transition-colors`}>{t.nav.contact}</a>
+                        <nav className="grid grid-cols-2 gap-2" aria-label="Navigation rapide du pied de page">
+                            <a href="#" className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} hover:text-violet transition-colors focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 ${theme === 'dark' ? 'focus:ring-offset-dark-light' : 'focus:ring-offset-gray-50'} rounded px-1`}>{t.nav.about}</a>
+                            <a href="#projects" className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} hover:text-violet transition-colors focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 ${theme === 'dark' ? 'focus:ring-offset-dark-light' : 'focus:ring-offset-gray-50'} rounded px-1`}>{t.nav.projects}</a>
+                            <a href="#skills" className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} hover:text-violet transition-colors focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 ${theme === 'dark' ? 'focus:ring-offset-dark-light' : 'focus:ring-offset-gray-50'} rounded px-1`}>{t.nav.skills}</a>
+                            <a href="#experience" className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} hover:text-violet transition-colors focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 ${theme === 'dark' ? 'focus:ring-offset-dark-light' : 'focus:ring-offset-gray-50'} rounded px-1`}>{t.nav.experience}</a>
+                            <a href="#education" className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} hover:text-violet transition-colors focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 ${theme === 'dark' ? 'focus:ring-offset-dark-light' : 'focus:ring-offset-gray-50'} rounded px-1`}>{t.nav.education}</a>
+                            <a href="#contact" className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} hover:text-violet transition-colors focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 ${theme === 'dark' ? 'focus:ring-offset-dark-light' : 'focus:ring-offset-gray-50'} rounded px-1`}>{t.nav.contact}</a>
                         </nav>
                     </motion.div>
 
@@ -66,26 +67,29 @@ export default function Footer() {
                         <h4 className={`${theme === 'dark' ? 'text-white' : 'text-dark'} font-semibold`}>{t.footer.followMe}</h4>
                         <div className="flex space-x-4">
                             <a
-                                href="https://github.com/JordanSN1"
+                                href="https://github.com/xoudev"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} hover:text-violet transition-colors`}
+                                className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} hover:text-violet transition-colors focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 ${theme === 'dark' ? 'focus:ring-offset-dark-light' : 'focus:ring-offset-gray-50'} rounded p-1`}
+                                aria-label="Visiter mon profil GitHub"
                             >
-                                <FaGithub className="w-6 h-6" />
+                                <FaGithub className="w-6 h-6" aria-hidden="true" />
                             </a>
                             <a
                                 href="https://www.linkedin.com/in/jordan-turnaco-a7a3a82a1/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} hover:text-violet transition-colors`}
+                                className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} hover:text-violet transition-colors focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 ${theme === 'dark' ? 'focus:ring-offset-dark-light' : 'focus:ring-offset-gray-50'} rounded p-1`}
+                                aria-label="Visiter mon profil LinkedIn"
                             >
-                                <FaLinkedin className="w-6 h-6" />
+                                <FaLinkedin className="w-6 h-6" aria-hidden="true" />
                             </a>
                             <a
-                                href="mailto:jordanturnaco@gmail.com"
-                                className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} hover:text-violet transition-colors`}
+                                href="mailto:jordan.turnaco@protonmail.com"
+                                className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} hover:text-violet transition-colors focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 ${theme === 'dark' ? 'focus:ring-offset-dark-light' : 'focus:ring-offset-gray-50'} rounded p-1`}
+                                aria-label="M'envoyer un email"
                             >
-                                <FaEnvelope className="w-6 h-6" />
+                                <FaEnvelope className="w-6 h-6" aria-hidden="true" />
                             </a>
                         </div>
                     </motion.div>

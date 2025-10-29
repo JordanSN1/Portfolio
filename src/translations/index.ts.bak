@@ -1,6 +1,5 @@
-type CategoryKey = 'development' | 'cybersecurity' | 'devsecops' | 'tools';
+type CategoryKey = 'programming' | 'web' | 'frameworks';
 type LevelKey = 'advanced' | 'intermediate' | 'beginner';
-type ProjectCategory = 'all' | 'cyber' | 'web' | 'mobile' | 'infrastructure' | 'design' | 'dev';
 
 interface Translations {
     fr: {
@@ -10,6 +9,7 @@ interface Translations {
             skills: string;
             experience: string;
             education: string;
+            certifications: string;
             projects: string;
             contact: string;
         };
@@ -18,87 +18,41 @@ interface Translations {
             role: string;
             description: string;
         };
-        about: {
-            title: string;
-            subtitle: string;
-            bio: string[];
-            interests: {
-                title: string;
-                items: string[];
-            };
-            motivation: {
-                title: string;
-                text: string;
-            };
-        };
-        education: {
-            title: string;
-            description: string;
-            educationSection: string;
-            certificationsSection: string;
-            noCertifications: string;
-            educations: {
-                degree: string;
-                school: string;
-                period: string;
-                description?: string;
-            }[];
-            certifications: {
-                name: string;
-                organization: string;
-                date?: string;
-            }[];
-        };
         skills: {
             title: string;
             description: string;
             categories: Record<CategoryKey, string>;
             levels: Record<LevelKey, string>;
             technologies: {
-                development: {
+                programming: {
                     python: string;
-                    javascript: string;
                     php: string;
-                    dart: string;
-                    c: string;
+                    javascript: string;
                     csharp: string;
                     java: string;
+                    c: string;
+                    dart: string;
+                };
+                web: {
                     html: string;
                     css: string;
                     react: string;
-                    nextjs: string;
                     vue: string;
+                    nextjs: string;
+                    django: string;
+                    symfony: string;
                     mysql: string;
                 };
-                cybersecurity: {
-                    pentesting: string;
-                    wireshark: string;
-                    burpsuite: string;
-                    metasploit: string;
-                    nmap: string;
-                    owasp: string;
-                    kalilinux: string;
-                    osint: string;
-                };
-                devsecops: {
-                    docker: string;
-                    kubernetes: string;
-                    jenkins: string;
-                    gitlab: string;
-                    ansible: string;
-                    terraform: string;
-                    sonarqube: string;
-                    snyk: string;
-                };
-                tools: {
-                    git: string;
+                frameworks: {
+                    flutter: string;
+                    nodejs: string;
+                    firebase: string;
+                    framerMotion: string;
+                    figma: string;
                     linux: string;
                     vmware: string;
                     pfsense: string;
                     cisco: string;
-                    figma: string;
-                    firebase: string;
-                    nodejs: string;
                 };
             };
         };
@@ -108,13 +62,6 @@ interface Translations {
             internship: string;
             current: string;
             experiences: {
-                arvato: {
-                    title: string;
-                    company: string;
-                    period: string;
-                    description: string[];
-                    website: string;
-                };
                 flutter: {
                     title: string;
                     company: string;
@@ -141,7 +88,6 @@ interface Translations {
             close: string;
             github: string;
             youtube: string;
-            filters: Record<ProjectCategory, string>;
             context: {
                 stage: string;
                 firstYear: string;
@@ -226,7 +172,6 @@ interface Translations {
             about: string;
             skills: string;
             experience: string;
-            education: string;
             projects: string;
             contact: string;
         };
@@ -235,87 +180,41 @@ interface Translations {
             role: string;
             description: string;
         };
-        about: {
-            title: string;
-            subtitle: string;
-            bio: string[];
-            interests: {
-                title: string;
-                items: string[];
-            };
-            motivation: {
-                title: string;
-                text: string;
-            };
-        };
-        education: {
-            title: string;
-            description: string;
-            educationSection: string;
-            certificationsSection: string;
-            noCertifications: string;
-            educations: {
-                degree: string;
-                school: string;
-                period: string;
-                description?: string;
-            }[];
-            certifications: {
-                name: string;
-                organization: string;
-                date?: string;
-            }[];
-        };
         skills: {
             title: string;
             description: string;
             categories: Record<CategoryKey, string>;
             levels: Record<LevelKey, string>;
             technologies: {
-                development: {
+                programming: {
                     python: string;
-                    javascript: string;
                     php: string;
-                    dart: string;
-                    c: string;
+                    javascript: string;
                     csharp: string;
+                    c: string;
+                    dart: string;
                     java: string;
+                };
+                web: {
                     html: string;
                     css: string;
                     react: string;
-                    nextjs: string;
                     vue: string;
+                    nextjs: string;
+                    django: string;
+                    symfony: string;
                     mysql: string;
                 };
-                cybersecurity: {
-                    pentesting: string;
-                    wireshark: string;
-                    burpsuite: string;
-                    metasploit: string;
-                    nmap: string;
-                    owasp: string;
-                    kalilinux: string;
-                    osint: string;
-                };
-                devsecops: {
-                    docker: string;
-                    kubernetes: string;
-                    jenkins: string;
-                    gitlab: string;
-                    ansible: string;
-                    terraform: string;
-                    sonarqube: string;
-                    snyk: string;
-                };
-                tools: {
-                    git: string;
+                frameworks: {
+                    flutter: string;
+                    nodejs: string;
+                    firebase: string;
+                    framerMotion: string;
+                    figma: string;
                     linux: string;
                     vmware: string;
                     pfsense: string;
                     cisco: string;
-                    figma: string;
-                    firebase: string;
-                    nodejs: string;
                 };
             };
         };
@@ -325,13 +224,6 @@ interface Translations {
             internship: string;
             current: string;
             experiences: {
-                arvato: {
-                    title: string;
-                    company: string;
-                    period: string;
-                    description: string[];
-                    website: string;
-                };
                 flutter: {
                     title: string;
                     company: string;
@@ -358,7 +250,6 @@ interface Translations {
             close: string;
             github: string;
             youtube: string;
-            filters: Record<ProjectCategory, string>;
             context: {
                 stage: string;
                 firstYear: string;
@@ -446,74 +337,21 @@ export const translations: Translations = {
             about: "À propos",
             skills: "Compétences",
             experience: "Expérience",
-            education: "Formations",
             projects: "Projets",
             contact: "Contact"
         },
         hero: {
             greeting: "Bonjour, je suis",
             role: "Étudiant en Cybersécurité & Réseaux",
-            description: "Étudiant en Bachelor Informatique en alternance chez Arvato en tant qu'Apprenti Système de management de la sécurité de l'information."
-        },
-        about: {
-            title: "À propos de moi",
-            subtitle: "Passionné par la cybersécurité et les technologies",
-            bio: [
-                "Je suis Jordan Turnaco, étudiant de 20 ans en 3ème année de Bachelor Cybersécurité à Guardia Cybersecurity School.",
-                "Actuellement en alternance chez Arvato, je me spécialise dans le management de la sécurité de l'information et la protection des systèmes.",
-                "Mon parcours m'a permis de développer une expertise en développement web et mobile, ainsi qu'une solide compréhension des infrastructures réseau et de la cybersécurité."
-            ],
-            interests: {
-                title: "Centres d'intérêt",
-                items: [
-                    "🔐 Cybersécurité & Pentesting",
-                    "🌐 Infrastructure réseau & Cloud",
-                    "💻 Développement Full-Stack",
-                    "🛡️ Sécurité des systèmes d'information",
-                    "🎮 CTF & Challenges de sécurité"
-                ]
-            },
-            motivation: {
-                title: "Ma motivation",
-                text: "Ce qui me passionne dans la cybersécurité, c'est la combinaison entre la protection des données, la résolution de problèmes complexes et l'évolution constante des menaces. Chaque jour apporte de nouveaux défis et de nouvelles opportunités d'apprendre."
-            }
-        },
-        education: {
-            title: "Formations & Certifications",
-            description: "Mon parcours académique et professionnel",
-            educationSection: "Formations",
-            certificationsSection: "Certifications",
-            noCertifications: "Aucune certification pour le moment. Je travaille actuellement à l'obtention de nouvelles certifications.",
-            educations: [
-                {
-                    degree: "3ème année - Bachelor Cybersécurité",
-                    school: "Guardia Cybersecurity School",
-                    period: "2025 - 2026",
-                    description: "Formation spécialisée en cybersécurité et sécurité des systèmes d'information"
-                },
-                {
-                    degree: "2ème année - Bachelor Informatique",
-                    school: "EPSI",
-                    period: "2024 - 2025",
-                    description: "Formation en développement et infrastructure"
-                },
-                {
-                    degree: "1ère année - Bachelor Informatique",
-                    school: "EPSI",
-                    period: "2023 - 2024",
-                    description: "Fondamentaux de l'informatique et du développement"
-                }
-            ],
-            certifications: []
+            description: "Étudiant en Bachelor Informatique en recherche d'alternance en cybersécurité et infrastructure réseau."
         },
         skills: {
             title: "Compétences",
-            description: "Étudiant en Cybersécurité & Réseaux avec une expertise en développement, sécurité informatique et DevSecOps.",
+            description: "Étudiant en Bachelor Informatique avec une expertise en développement web et mobile et cybersécurité.",
             categories: {
-                development: "Langages & Technologies",
-                cybersecurity: "Cybersécurité",
-                devsecops: "DevSecOps & CI/CD",
-                tools: "Outils & Systèmes"
+                programming: "Langages de Programmation",
+                web: "Technologies Web",
+                frameworks: "Frameworks & Outils"
             },
             levels: {
                 advanced: "Avancé",
@@ -521,50 +359,35 @@ export const translations: Translations = {
                 beginner: "Débutant"
             },
             technologies: {
-                development: {
+                programming: {
                     python: "Python",
-                    javascript: "JavaScript",
                     php: "PHP",
-                    dart: "Dart",
-                    c: "C",
+                    javascript: "JavaScript",
                     csharp: "C#",
                     java: "Java",
+                    c: "C",
+                    dart: "Dart"
+                },
+                web: {
                     html: "HTML",
                     css: "CSS",
                     react: "React",
-                    nextjs: "Next.js",
                     vue: "Vue.js",
+                    nextjs: "Next.js",
+                    django: "Django",
+                    symfony: "Symfony",
                     mysql: "MySQL"
                 },
-                cybersecurity: {
-                    pentesting: "Pentesting",
-                    wireshark: "Wireshark",
-                    burpsuite: "Burp Suite",
-                    metasploit: "Metasploit",
-                    nmap: "Nmap",
-                    owasp: "OWASP",
-                    kalilinux: "Kali Linux",
-                    osint: "OSINT"
-                },
-                devsecops: {
-                    docker: "Docker",
-                    kubernetes: "Kubernetes",
-                    jenkins: "Jenkins",
-                    gitlab: "GitLab CI/CD",
-                    ansible: "Ansible",
-                    terraform: "Terraform",
-                    sonarqube: "SonarQube",
-                    snyk: "Snyk"
-                },
-                tools: {
-                    git: "Git",
+                frameworks: {
+                    flutter: "Flutter",
+                    nodejs: "Node.js",
+                    firebase: "Firebase",
+                    framerMotion: "Framer Motion",
+                    figma: "Figma",
                     linux: "Linux",
                     vmware: "VMware",
                     pfsense: "pfSense",
-                    cisco: "Cisco",
-                    figma: "Figma",
-                    firebase: "Firebase",
-                    nodejs: "Node.js"
+                    cisco: "Cisco"
                 }
             }
         },
@@ -574,18 +397,6 @@ export const translations: Translations = {
             internship: "Stage",
             current: "En cours",
             experiences: {
-                arvato: {
-                    title: "Apprenti Système de management de la sécurité de l'information",
-                    company: "Arvato",
-                    period: "Septembre 2025 - Présent",
-                    description: [
-                        "Gestion et amélioration du système de management de la sécurité de l'information",
-                        "Mise en place de politiques de sécurité",
-                        "Audit et conformité des systèmes d'information",
-                        "Gestion des risques et incidents de sécurité"
-                    ],
-                    website: "https://www.arvato.com"
-                },
                 flutter: {
                     title: "Stage Développement Flutter",
                     company: "AaliaTech",
@@ -622,15 +433,6 @@ export const translations: Translations = {
             close: "Fermer",
             github: "GitHub",
             youtube: "YouTube",
-            filters: {
-                all: "Tous",
-                cyber: "Cybersécurité",
-                web: "Développement Web",
-                mobile: "Développement Mobile",
-                infrastructure: "Infrastructure",
-                design: "Design",
-                dev: "Développement"
-            },
             context: {
                 stage: "Stage",
                 firstYear: "Cours 1ere année",
@@ -726,7 +528,7 @@ export const translations: Translations = {
             levelB1: "Niveau intermédiaire"
         },
         footer: {
-            description: "Étudiant passionné par la cybersécurité et les réseaux. 20 ans, actuellement en alternance chez Arvato.",
+            description: "Étudiant passionné par la cybersécurité et les réseaux. 20 ans en recherche d'alternance pour 2025 - 2026.",
             quickNav: "Navigation Rapide",
             followMe: "Me Suivre",
             rights: "Tous droits réservés."
@@ -750,74 +552,21 @@ export const translations: Translations = {
             about: "About",
             skills: "Skills",
             experience: "Experience",
-            education: "Education",
             projects: "Projects",
             contact: "Contact"
         },
         hero: {
             greeting: "Hi, I'm",
             role: "Cybersecurity & Network Student",
-            description: "Bachelor's student in Computer Science in apprenticeship at Arvato as Information Security Management System Apprentice."
-        },
-        about: {
-            title: "About Me",
-            subtitle: "Passionate about cybersecurity and technology",
-            bio: [
-                "I'm Jordan Turnaco, a 20-year-old student in my 3rd year of Cybersecurity Bachelor at Guardia Cybersecurity School.",
-                "Currently in apprenticeship at Arvato, I specialize in information security management and system protection.",
-                "My journey has allowed me to develop expertise in web and mobile development, as well as a solid understanding of network infrastructure and cybersecurity."
-            ],
-            interests: {
-                title: "Interests",
-                items: [
-                    "🔐 Cybersecurity & Pentesting",
-                    "🌐 Network Infrastructure & Cloud",
-                    "💻 Full-Stack Development",
-                    "🛡️ Information Security Management",
-                    "🎮 CTF & Security Challenges"
-                ]
-            },
-            motivation: {
-                title: "My Motivation",
-                text: "What excites me about cybersecurity is the combination of data protection, solving complex problems, and the constant evolution of threats. Every day brings new challenges and new opportunities to learn."
-            }
-        },
-        education: {
-            title: "Education & Certifications",
-            description: "My academic and professional journey",
-            educationSection: "Education",
-            certificationsSection: "Certifications",
-            noCertifications: "No certifications yet. I am currently working towards obtaining new certifications.",
-            educations: [
-                {
-                    degree: "3rd Year - Cybersecurity Bachelor",
-                    school: "Guardia Cybersecurity School",
-                    period: "2025 - 2026",
-                    description: "Specialized training in cybersecurity and information systems security"
-                },
-                {
-                    degree: "2nd Year - Computer Science Bachelor",
-                    school: "EPSI",
-                    period: "2024 - 2025",
-                    description: "Training in development and infrastructure"
-                },
-                {
-                    degree: "1st Year - Computer Science Bachelor",
-                    school: "EPSI",
-                    period: "2023 - 2024",
-                    description: "Fundamentals of computer science and development"
-                }
-            ],
-            certifications: []
+            description: "Bachelor's student in Computer Science looking for an apprenticeship in cybersecurity and network infrastructure."
         },
         skills: {
             title: "Skills",
-            description: "Cybersecurity & Networks student with expertise in development, IT security and DevSecOps.",
+            description: "Bachelor's student in Computer Science with expertise in web and mobile development and cybersecurity.",
             categories: {
-                development: "Languages & Technologies",
-                cybersecurity: "Cybersecurity",
-                devsecops: "DevSecOps & CI/CD",
-                tools: "Tools & Systems"
+                programming: "Programming Languages",
+                web: "Web Technologies",
+                frameworks: "Frameworks & Tools"
             },
             levels: {
                 advanced: "Advanced",
@@ -825,50 +574,35 @@ export const translations: Translations = {
                 beginner: "Beginner"
             },
             technologies: {
-                development: {
+                programming: {
                     python: "Python",
-                    javascript: "JavaScript",
                     php: "PHP",
-                    dart: "Dart",
-                    c: "C",
+                    javascript: "JavaScript",
                     csharp: "C#",
-                    java: "Java",
+                    c: "C",
+                    dart: "Dart",
+                    java: "Java"
+                },
+                web: {
                     html: "HTML",
                     css: "CSS",
                     react: "React",
-                    nextjs: "Next.js",
                     vue: "Vue.js",
+                    nextjs: "Next.js",
+                    django: "Django",
+                    symfony: "Symfony",
                     mysql: "MySQL"
                 },
-                cybersecurity: {
-                    pentesting: "Pentesting",
-                    wireshark: "Wireshark",
-                    burpsuite: "Burp Suite",
-                    metasploit: "Metasploit",
-                    nmap: "Nmap",
-                    owasp: "OWASP",
-                    kalilinux: "Kali Linux",
-                    osint: "OSINT"
-                },
-                devsecops: {
-                    docker: "Docker",
-                    kubernetes: "Kubernetes",
-                    jenkins: "Jenkins",
-                    gitlab: "GitLab CI/CD",
-                    ansible: "Ansible",
-                    terraform: "Terraform",
-                    sonarqube: "SonarQube",
-                    snyk: "Snyk"
-                },
-                tools: {
-                    git: "Git",
+                frameworks: {
+                    flutter: "Flutter",
+                    nodejs: "Node.js",
+                    firebase: "Firebase",
+                    framerMotion: "Framer Motion",
+                    figma: "Figma",
                     linux: "Linux",
                     vmware: "VMware",
                     pfsense: "pfSense",
-                    cisco: "Cisco",
-                    figma: "Figma",
-                    firebase: "Firebase",
-                    nodejs: "Node.js"
+                    cisco: "Cisco"
                 }
             }
         },
@@ -878,18 +612,6 @@ export const translations: Translations = {
             internship: "Internship",
             current: "Current",
             experiences: {
-                arvato: {
-                    title: "Information Security Management System Apprentice",
-                    company: "Arvato",
-                    period: "September 2025 - Present",
-                    description: [
-                        "Management and improvement of the information security management system",
-                        "Implementation of security policies",
-                        "Audit and compliance of information systems",
-                        "Risk and security incident management"
-                    ],
-                    website: "https://www.arvato.com"
-                },
                 flutter: {
                     title: "Flutter Development Internship",
                     company: "AaliaTech",
@@ -926,15 +648,6 @@ export const translations: Translations = {
             close: "Close",
             github: "GitHub",
             youtube: "YouTube",
-            filters: {
-                all: "All",
-                cyber: "Cybersecurity",
-                web: "Web Development",
-                mobile: "Mobile Development",
-                infrastructure: "Infrastructure",
-                design: "Design",
-                dev: "Development"
-            },
             context: {
                 stage: "Internship",
                 firstYear: "First Year Course",
@@ -1030,7 +743,7 @@ export const translations: Translations = {
             levelB1: "Intermediate"
         },
         footer: {
-            description: "Student passionate about cybersecurity and networks. 20 years old, currently in apprenticeship at Arvato.",
+            description: "Student passionate about cybersecurity and networks. 20 years old looking for an apprenticeship for 2025 - 2026.",
             quickNav: "Quick Navigation",
             followMe: "Follow Me",
             rights: "All rights reserved."

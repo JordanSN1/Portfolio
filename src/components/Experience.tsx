@@ -19,6 +19,14 @@ export default function Experience() {
 
     const experiences: Experience[] = [
         {
+            title: t.experience.experiences.arvato.title,
+            company: t.experience.experiences.arvato.company,
+            period: t.experience.experiences.arvato.period,
+            description: t.experience.experiences.arvato.description,
+            technologies: ["ISMS", "ISO 27001", "Cybersecurity", "Risk Management"],
+            website: t.experience.experiences.arvato.website
+        },
+        {
             title: t.experience.experiences.flutter.title,
             company: t.experience.experiences.flutter.company,
             period: t.experience.experiences.flutter.period,
@@ -126,36 +134,45 @@ export default function Experience() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: false }}
-                    className="max-w-3xl mx-auto"
+                    className="max-w-5xl mx-auto"
                 >
-                    <div className="space-y-8">
+                    <div className="space-y-6">
                         {experiences.map((experience, index) => (
                             <motion.div
                                 key={index}
                                 variants={cardVariants}
-                                className={`${theme === 'dark' ? 'bg-dark' : 'bg-white'} p-6 rounded-xl border border-violet/10 hover:border-violet/30 transition-all duration-300`}
+                                className={`${theme === 'dark' ? 'bg-dark/50' : 'bg-white'} p-6 md:p-8 rounded-2xl border ${theme === 'dark' ? 'border-violet/10' : 'border-gray-200'} hover:border-violet/30 transition-all duration-300 shadow-lg hover:shadow-xl relative backdrop-blur-sm`}
                             >
-                                <motion.div variants={cardVariants} className="mb-4">
-                                    <h3 className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-dark'}`}>
+                                {index === 0 && (
+                                    <div className="absolute top-6 right-6">
+                                        <span className="px-3 py-1.5 bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-500 rounded-full text-xs font-semibold flex items-center gap-2 border border-green-500/20">
+                                            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                                            {t.experience.current}
+                                        </span>
+                                    </div>
+                                )}
+                                <div className="mb-6">
+                                    <h3 className={`text-xl md:text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-dark'} pr-24 mb-2`}>
                                         {experience.title}
                                     </h3>
-                                    <p className="text-violet">
+                                    <p className="text-violet font-semibold text-lg mb-1">
                                         <a
                                             href={experience.website}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="hover:underline"
+                                            className="hover:underline hover:text-violet/80 transition-colors focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 focus:ring-offset-transparent rounded"
+                                            aria-label={`Visiter le site web de ${experience.company}`}
                                         >
                                             {experience.company}
                                         </a>
                                     </p>
-                                    <p className="text-gray-custom text-sm">{experience.period}</p>
-                                </motion.div>
-                                <ul className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} space-y-2 mb-4`}>
+                                    <p className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} text-sm font-medium`}>{experience.period}</p>
+                                </div>
+                                <ul className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-700'} space-y-3 mb-6`}>
                                     {experience.description.map((item, i) => (
-                                        <li key={i} className="flex items-start">
-                                            <span className="text-violet mr-2">•</span>
-                                            {item}
+                                        <li key={i} className="flex items-start text-sm md:text-base">
+                                            <span className="text-violet mr-3 mt-1 font-bold">•</span>
+                                            <span className="flex-1">{item}</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -163,7 +180,7 @@ export default function Experience() {
                                     {experience.technologies.map((tech, i) => (
                                         <span
                                             key={i}
-                                            className="px-3 py-1 bg-violet/10 text-violet rounded-full text-sm"
+                                            className="px-3 py-1.5 bg-gradient-to-br from-violet/10 to-purple-500/10 text-violet rounded-lg text-sm font-medium border border-violet/10 hover:border-violet/30 hover:scale-105 transition-all duration-200"
                                         >
                                             {tech}
                                         </span>

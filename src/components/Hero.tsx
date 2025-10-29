@@ -39,7 +39,7 @@ export default function Hero() {
                         variants={fadeInLeft}
                         initial="initial"
                         animate="animate"
-                        className="text-center lg:text-left"
+                        className="text-center lg:text-left order-2 lg:order-1"
                     >
                         <motion.div
                             variants={fadeIn}
@@ -63,18 +63,33 @@ export default function Hero() {
 
                         <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                             <motion.a
+                                href="/CV TURNACO Jordan.pdf"
+                                download
+                                className="px-6 py-3 bg-gradient-to-r from-violet to-purple-600 hover:from-violet/90 hover:to-purple-600/90 text-white rounded-lg transition-all duration-300 flex items-center gap-2 shadow-lg shadow-violet/20 focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 focus:ring-offset-dark"
+                                whileHover={{ scale: 1.02, y: -2 }}
+                                whileTap={{ scale: 0.98 }}
+                                aria-label="Télécharger mon CV"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                                </svg>
+                                {t.common.downloadCV.button}
+                            </motion.a>
+                            <motion.a
                                 href="#projects"
-                                className="px-6 py-3 bg-violet hover:bg-violet/90 text-white rounded-lg transition-all duration-300"
+                                className="px-6 py-3 bg-violet hover:bg-violet/90 text-white rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 focus:ring-offset-dark"
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
+                                aria-label="Voir mes projets"
                             >
                                 {t.nav.projects}
                             </motion.a>
                             <motion.a
                                 href="#contact"
-                                className="px-6 py-3 border border-orange text-orange hover:bg-orange/10 rounded-lg transition-all duration-300"
+                                className="px-6 py-3 border border-orange text-orange hover:bg-orange/10 rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 focus:ring-offset-dark"
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
+                                aria-label="Me contacter"
                             >
                                 {t.nav.contact}
                             </motion.a>
@@ -86,10 +101,10 @@ export default function Hero() {
                         variants={fadeInScale}
                         initial="initial"
                         animate="animate"
-                        className="hidden lg:block"
+                        className="flex justify-center lg:justify-end items-center order-1 lg:order-2"
                     >
-                        <div className="relative w-full max-w-md mx-auto">
-                            <div className="aspect-square relative rounded-full overflow-hidden border-4 border-violet/20">
+                        <div className="relative w-48 h-48 md:w-64 md:h-64 lg:w-96 lg:h-96">
+                            <div className="w-full h-full relative rounded-full overflow-hidden border-4 border-violet/20">
                                 <Image
                                     src="/images/TURNACOJordan.jpg"
                                     alt="TURNACO Jordan"
@@ -97,8 +112,8 @@ export default function Hero() {
                                     className="object-cover"
                                     priority
                                 />
+                                <div className="absolute inset-0 bg-gradient-to-tr from-violet/20 to-orange/20 rounded-full pointer-events-none" />
                             </div>
-                            <div className="absolute inset-0 bg-gradient-to-tr from-violet/20 to-orange/20 rounded-full" />
                         </div>
                     </motion.div>
                 </div>

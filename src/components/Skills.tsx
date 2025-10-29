@@ -1,17 +1,17 @@
 'use client'
 
 import { motion } from 'framer-motion';
-import { FaHtml5, FaCss3Alt, FaPython, FaPhp, FaFigma, FaNodeJs, FaLinux, FaServer, FaNetworkWired, FaCode, FaTools, FaDownload } from 'react-icons/fa';
-import { FaFlutter } from 'react-icons/fa6';
-import { SiJavascript, SiReact, SiVuedotjs, SiDjango, SiSymfony, SiDart, SiC, SiMysql, SiNextdotjs, SiFirebase, SiVmware, SiPfsense, SiCisco, SiSharp } from 'react-icons/si';
+import { FaPython, FaPhp, FaLinux, FaDocker, FaGitAlt, FaNodeJs } from 'react-icons/fa';
+import { SiJavascript, SiReact, SiVuedotjs, SiDart, SiC, SiMysql, SiNextdotjs, SiFirebase, SiVmware, SiPfsense, SiCisco, SiSharp, SiWireshark, SiKalilinux, SiKubernetes, SiJenkins, SiGitlab, SiAnsible, SiTerraform, SiSonarqube } from 'react-icons/si';
 import { DiJava } from 'react-icons/di';
-import { TbBrandFramerMotion, TbWorld } from 'react-icons/tb';
+import { FaShieldAlt, FaBug, FaKey, FaNetworkWired, FaTools, FaDownload, FaEye, FaCode } from 'react-icons/fa';
+import { TbWorld } from 'react-icons/tb';
 import { useTheme } from '@/context/ThemeContext';
 import { translations } from '@/translations';
 import { useState } from 'react';
 import Popup from './Popup';
 
-type CategoryKey = 'programming' | 'web' | 'frameworks';
+type CategoryKey = 'development' | 'cybersecurity' | 'devsecops' | 'tools';
 type LevelKey = 'advanced' | 'intermediate' | 'beginner';
 
 interface Technology {
@@ -34,48 +34,58 @@ export default function Skills() {
 
     const skills: SkillCategory[] = [
         {
-            category: "programming",
+            category: "development",
             icon: <FaCode className="w-8 h-8 text-violet" />,
-            description: t.skills.categories.programming,
+            description: t.skills.categories.development,
             technologies: [
-                { name: t.skills.technologies.programming.python, icon: <FaPython />, level: "intermediate" },
-                { name: t.skills.technologies.programming.javascript, icon: <SiJavascript />, level: "intermediate" },
-                { name: t.skills.technologies.programming.c, icon: <SiC />, level: "beginner" },
-                { name: t.skills.technologies.programming.dart, icon: <SiDart />, level: "intermediate" },
-                { name: t.skills.technologies.programming.php, icon: <FaPhp />, level: "intermediate" },
-                { name: t.skills.technologies.programming.csharp, icon: <SiSharp />, level: "beginner" },
-                { name: t.skills.technologies.programming.java, icon: <DiJava />, level: "beginner" }
+                { name: t.skills.technologies.development.python, icon: <FaPython />, level: "intermediate" },
+                { name: t.skills.technologies.development.javascript, icon: <SiJavascript />, level: "intermediate" },
+                { name: t.skills.technologies.development.php, icon: <FaPhp />, level: "intermediate" },
+                { name: t.skills.technologies.development.dart, icon: <SiDart />, level: "intermediate" },
+                { name: t.skills.technologies.development.react, icon: <SiReact />, level: "intermediate" },
+                { name: t.skills.technologies.development.nextjs, icon: <SiNextdotjs />, level: "intermediate" },
+                { name: t.skills.technologies.development.mysql, icon: <SiMysql />, level: "intermediate" }
             ]
         },
         {
-            category: "web",
-            icon: <TbWorld className="w-8 h-8 text-violet" />,
-            description: t.skills.categories.web,
+            category: "cybersecurity",
+            icon: <FaShieldAlt className="w-8 h-8 text-violet" />,
+            description: t.skills.categories.cybersecurity,
             technologies: [
-                { name: t.skills.technologies.web.html, icon: <FaHtml5 />, level: "advanced" },
-                { name: t.skills.technologies.web.css, icon: <FaCss3Alt />, level: "advanced" },
-                { name: t.skills.technologies.web.react, icon: <SiReact />, level: "intermediate" },
-                { name: t.skills.technologies.web.vue, icon: <SiVuedotjs />, level: "beginner" },
-                { name: t.skills.technologies.web.nextjs, icon: <SiNextdotjs />, level: "intermediate" },
-                { name: t.skills.technologies.web.mysql, icon: <SiMysql />, level: "intermediate" },
-                { name: t.skills.technologies.web.django, icon: <SiDjango />, level: "beginner" },
-                { name: t.skills.technologies.web.symfony, icon: <SiSymfony />, level: "beginner" }
+                { name: t.skills.technologies.cybersecurity.pentesting, icon: <FaBug />, level: "intermediate" },
+                { name: t.skills.technologies.cybersecurity.wireshark, icon: <SiWireshark />, level: "intermediate" },
+                { name: t.skills.technologies.cybersecurity.burpsuite, icon: <FaKey />, level: "beginner" },
+                { name: t.skills.technologies.cybersecurity.metasploit, icon: <FaTools />, level: "beginner" },
+                { name: t.skills.technologies.cybersecurity.nmap, icon: <FaNetworkWired />, level: "intermediate" },
+                { name: t.skills.technologies.cybersecurity.kalilinux, icon: <SiKalilinux />, level: "intermediate" },
+                { name: t.skills.technologies.cybersecurity.osint, icon: <FaEye />, level: "intermediate" }
             ]
         },
         {
-            category: "frameworks",
+            category: "devsecops",
+            icon: <FaDocker className="w-8 h-8 text-violet" />,
+            description: t.skills.categories.devsecops,
+            technologies: [
+                { name: t.skills.technologies.devsecops.docker, icon: <FaDocker />, level: "intermediate" },
+                { name: t.skills.technologies.devsecops.kubernetes, icon: <SiKubernetes />, level: "beginner" },
+                { name: t.skills.technologies.devsecops.jenkins, icon: <SiJenkins />, level: "beginner" },
+                { name: t.skills.technologies.devsecops.gitlab, icon: <SiGitlab />, level: "intermediate" },
+                { name: t.skills.technologies.devsecops.ansible, icon: <SiAnsible />, level: "beginner" },
+                { name: t.skills.technologies.devsecops.terraform, icon: <SiTerraform />, level: "beginner" }
+            ]
+        },
+        {
+            category: "tools",
             icon: <FaTools className="w-8 h-8 text-violet" />,
-            description: t.skills.categories.frameworks,
+            description: t.skills.categories.tools,
             technologies: [
-                { name: t.skills.technologies.frameworks.flutter, icon: <FaFlutter />, level: "intermediate" },
-                { name: t.skills.technologies.frameworks.nodejs, icon: <FaNodeJs />, level: "intermediate" },
-                { name: t.skills.technologies.frameworks.firebase, icon: <SiFirebase />, level: "intermediate" },
-                { name: t.skills.technologies.frameworks.framerMotion, icon: <TbBrandFramerMotion />, level: "intermediate" },
-                { name: t.skills.technologies.frameworks.figma, icon: <FaFigma />, level: "intermediate" },
-                { name: t.skills.technologies.frameworks.linux, icon: <FaLinux />, level: "intermediate" },
-                { name: t.skills.technologies.frameworks.vmware, icon: <SiVmware />, level: "beginner" },
-                { name: t.skills.technologies.frameworks.pfsense, icon: <SiPfsense />, level: "beginner" },
-                { name: t.skills.technologies.frameworks.cisco, icon: <SiCisco />, level: "beginner" }
+                { name: t.skills.technologies.tools.git, icon: <FaGitAlt />, level: "intermediate" },
+                { name: t.skills.technologies.tools.linux, icon: <FaLinux />, level: "intermediate" },
+                { name: t.skills.technologies.tools.vmware, icon: <SiVmware />, level: "intermediate" },
+                { name: t.skills.technologies.tools.pfsense, icon: <SiPfsense />, level: "beginner" },
+                { name: t.skills.technologies.tools.cisco, icon: <SiCisco />, level: "beginner" },
+                { name: t.skills.technologies.tools.firebase, icon: <SiFirebase />, level: "intermediate" },
+                { name: t.skills.technologies.tools.nodejs, icon: <FaNodeJs />, level: "intermediate" }
             ]
         }
     ];
@@ -156,7 +166,7 @@ export default function Skills() {
     };
 
     return (
-        <section id="skills" className="py-20 bg-white dark:bg-dark-light">
+        <section id="skills" className={`py-20 ${theme === 'dark' ? 'bg-dark' : 'bg-gray-50'}`}>
             <div className="container-custom">
                 <motion.div
                     variants={cardVariants}
@@ -165,17 +175,12 @@ export default function Skills() {
                     viewport={{ once: false }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-3xl font-bold text-dark dark:text-white mb-4">{t.skills.title}</h2>
-                    <p className="text-gray-custom max-w-2xl mx-auto mb-8">
+                    <h2 className={`text-3xl md:text-4xl font-bold ${theme === 'dark' ? 'text-white' : 'text-dark'} mb-4`}>
+                        {t.skills.title}
+                    </h2>
+                    <p className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} max-w-2xl mx-auto text-lg`}>
                         {t.skills.description}
                     </p>
-                    <button
-                        onClick={handleDownloadCV}
-                        className="inline-flex items-center gap-2 px-6 py-3 bg-violet hover:bg-violet/90 text-white rounded-lg transition-all duration-300"
-                    >
-                        <FaDownload />
-                        <span>{t.common.downloadCV.button}</span>
-                    </button>
                 </motion.div>
 
                 <motion.div
@@ -183,36 +188,37 @@ export default function Skills() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: false, margin: "-100px" }}
-                    className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+                    className="grid gap-6 md:grid-cols-2 lg:grid-cols-2"
                 >
                     {skills.map((category, index) => (
                         <motion.div
                             key={index}
                             variants={cardVariants}
-                            className="bg-white dark:bg-dark p-6 rounded-xl border border-violet/10 hover:border-violet/30 transition-all duration-300"
+                            className={`${
+                                theme === 'dark' ? 'bg-dark' : 'bg-white'
+                            } p-8 rounded-2xl border ${
+                                theme === 'dark' ? 'border-violet/20' : 'border-gray-200'
+                            } hover:border-violet/50 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-violet/10`}
                         >
                             <motion.div
                                 initial="hidden"
                                 whileInView="visible"
                                 viewport={{ once: false }}
-                                className="flex items-center gap-4 mb-6"
+                                className="flex items-center gap-4 mb-6 pb-4 border-b border-violet/20"
                             >
-                                <motion.div variants={iconVariants}>
+                                <motion.div 
+                                    variants={iconVariants}
+                                    className="p-3 bg-violet/10 rounded-xl"
+                                >
                                     {category.icon}
                                 </motion.div>
                                 <div>
                                     <motion.h3
                                         variants={skillItemVariants}
-                                        className="text-xl font-bold text-dark dark:text-white"
+                                        className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-dark'}`}
                                     >
                                         {t.skills.categories[category.category]}
                                     </motion.h3>
-                                    <motion.p
-                                        variants={skillItemVariants}
-                                        className="text-gray-custom text-sm"
-                                    >
-                                        {category.description}
-                                    </motion.p>
                                 </div>
                             </motion.div>
 
@@ -220,34 +226,29 @@ export default function Skills() {
                                 initial="hidden"
                                 whileInView="visible"
                                 viewport={{ once: false }}
-                                className="space-y-4"
+                                className="flex flex-wrap gap-3"
                             >
                                 {category.technologies.map((tech, techIndex) => (
                                     <motion.div
                                         key={techIndex}
-                                        variants={skillItemVariants}
+                                        variants={levelBadgeVariants}
                                         custom={techIndex}
-                                        className="flex items-center justify-between p-3 bg-gray-50 dark:bg-dark-lighter rounded-lg hover:bg-violet/5 transition-all duration-300"
+                                        whileHover={{ scale: 1.05, y: -2 }}
+                                        className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
+                                            theme === 'dark' ? 'bg-dark-lighter' : 'bg-gray-50'
+                                        } border ${
+                                            theme === 'dark' ? 'border-violet/10' : 'border-gray-200'
+                                        } hover:border-violet/50 transition-all duration-300 cursor-pointer group`}
                                     >
-                                        <motion.div
-                                            variants={skillItemVariants}
-                                            className="flex items-center gap-3"
-                                        >
-                                            <motion.span
-                                                variants={iconVariants}
-                                                className="text-violet text-xl"
-                                            >
-                                                {tech.icon}
-                                            </motion.span>
-                                            <span className="text-gray-custom">{tech.name}</span>
-                                        </motion.div>
                                         <motion.span
-                                            variants={levelBadgeVariants}
-                                            className={`text-xs px-2 py-1 bg-violet/10 text-violet rounded-full
-                                                }`}
+                                            variants={iconVariants}
+                                            className="text-violet text-xl group-hover:scale-110 transition-transform"
                                         >
-                                            {t.skills.levels[tech.level]}
+                                            {tech.icon}
                                         </motion.span>
+                                        <span className={`text-sm font-medium ${theme === 'dark' ? 'text-gray-custom' : 'text-gray-700'}`}>
+                                            {tech.name}
+                                        </span>
                                     </motion.div>
                                 ))}
                             </motion.div>
@@ -255,16 +256,6 @@ export default function Skills() {
                     ))}
                 </motion.div>
             </div>
-
-            {/* Modal de téléchargement du CV */}
-            <Popup
-                isOpen={showDownloadModal}
-                onClose={() => setShowDownloadModal(false)}
-                title={t.common.downloadCV.title}
-                message={t.common.downloadCV.message}
-                onConfirm={confirmDownload}
-                confirmText={t.common.downloadCV.button}
-            />
         </section>
     );
 } 
