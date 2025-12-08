@@ -5,6 +5,8 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ScrollProgress from '@/components/ScrollProgress'
+import ScrollToTop from '@/components/ScrollToTop'
+import CustomCursor from '@/components/CustomCursor'
 import { ThemeProvider } from '@/context/ThemeContext'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -80,12 +82,14 @@ export default function RootLayout({
                     `
                 }} />
             </head>
-            <body className={`${inter.variable} font-sans bg-white dark:bg-dark text-dark dark:text-white transition-colors duration-300`}>
+            <body className={`${inter.variable} font-sans bg-white dark:bg-dark text-dark dark:text-white transition-colors duration-300 cursor-none`}>
                 <ThemeProvider>
+                    <CustomCursor />
                     <ScrollProgress />
                     <Navbar />
                     {children}
                     <Footer />
+                    <ScrollToTop />
                 </ThemeProvider>
             </body>
         </html>

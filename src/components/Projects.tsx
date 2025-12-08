@@ -306,85 +306,88 @@ export default function Projects() {
                         initial="hidden"
                         animate="visible"
                         exit="hidden"
-                        className="grid gap-8 md:grid-cols-2 max-w-6xl mx-auto"
+                        className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto"
                     >
                     {sortedProjects.map((project, index) => (
                         <motion.div
                             key={index}
                             variants={cardVariants}
-                            className={`group ${theme === 'dark' ? 'bg-dark-light/50' : 'bg-white'} rounded-2xl overflow-hidden border ${theme === 'dark' ? 'border-violet/10' : 'border-gray-200'} hover:border-violet/40 transition-all duration-300 shadow-xl hover:shadow-2xl flex flex-col`}
+                            onClick={() => setSelectedProject(project)}
+                            className={`group cursor-pointer relative ${theme === 'dark' ? 'bg-dark-light/30' : 'bg-white'} rounded-xl overflow-hidden transition-all duration-300 border ${theme === 'dark' ? 'border-violet/10 hover:border-violet/30' : 'border-gray-100 hover:border-violet/30'} hover:shadow-lg hover:shadow-violet/5`}
                         >
-                            {/* Image Container - Plus grande et mieux intégrée */}
-                            <div className={`relative h-56 ${theme === 'dark' ? 'bg-gradient-to-br from-violet/5 via-dark-light to-purple-600/5' : 'bg-gradient-to-br from-violet/5 via-gray-50 to-purple-600/5'} flex items-center justify-center p-8`}>
+                            {/* Image Container - Compact */}
+                            <div className={`relative h-40 ${theme === 'dark' ? 'bg-dark-lighter' : 'bg-gray-50'} flex items-center justify-center overflow-hidden`}>
                                 <Image
                                     src={project.image}
                                     alt={project.title}
                                     fill
-                                    sizes="(max-width: 768px) 100vw, 50vw"
-                                    className="object-contain transition-all duration-500 group-hover:scale-105 drop-shadow-2xl"
+                                    sizes="(max-width: 768px) 100vw, 33vw"
+                                    className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
                                 />
                                 
-                                {/* Badges en haut */}
-                                <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10">
+                                {/* Badges overlay */}
+                                <div className="absolute top-3 left-3 right-3 flex justify-between items-start">
                                     {project.featured && (
-                                        <span className="px-3 py-1.5 bg-violet/90 backdrop-blur-xl text-white rounded-full text-xs font-bold shadow-lg border border-white/20">
-                                            ⭐ {t.projects.featured}
+                                        <span className="px-2 py-1 bg-violet/90 text-white rounded-md text-[10px] font-semibold uppercase tracking-wide">
+                                            Featured
                                         </span>
                                     )}
                                     {project.grade && (
-                                        <span className="px-3 py-1.5 bg-orange/90 backdrop-blur-xl text-white rounded-full text-xs font-bold shadow-lg border border-white/20 ml-auto">
-                                            📊 {project.grade}
+                                        <span className="px-2 py-1 bg-orange/90 text-white rounded-md text-[10px] font-semibold ml-auto">
+                                            {project.grade}
                                         </span>
                                     )}
                                 </div>
-                            </div>
 
-                            {/* Content */}
-                            <div className="p-6 flex flex-col flex-grow">
-                                {/* Header */}
-                                <div className="mb-4">
-                                    <h3 className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-dark'} mb-2`}>
-                                        {project.title}
-                                    </h3>
-                                    <div className="flex items-center gap-3 text-sm">
-                                        <span className="px-2.5 py-1 bg-violet/10 text-violet rounded-lg font-medium">
-                                            {project.context === "Stage" && t.projects.context.stage}
-                                            {project.context === "Cours 1ere année" && t.projects.context.firstYear}
-                                            {project.context === "Cours 2eme année" && t.projects.context.secondYear}
-                                            {project.context === "Personnel" && t.projects.context.personal}
-                                        </span>
-                                        <span className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} text-sm`}>
-                                            {project.date}
-                                        </span>
-                                    </div>
+                                {/* Category badge */}
+                                <div className={`absolute bottom-3 right-3 w-8 h-8 rounded-lg ${theme === 'dark' ? 'bg-dark/70' : 'bg-white/70'} backdrop-blur-sm flex items-center justify-center border ${theme === 'dark' ? 'border-violet/20' : 'border-gray-200'}`}>
+                                    <span className="text-violet text-sm">{getCategoryIcon(project.category)}</span>
                                 </div>
 
-                                {/* Description */}
-                                <p className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} text-sm mb-4 line-clamp-3 leading-relaxed`}>
-                                    {project.description[0]}
-                                </p>
+                                {/* Hover overlay with "View" indicator */}
+                                <div className="absolute inset-0 bg-violet/80 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                                    <div className="flex items-center gap-2 text-white font-medium">
+                                        <FaExternalLinkAlt className="text-sm" />
+                                        <span>{language === 'fr' ? 'Voir détails' : 'View details'}</span>
+                                    </div>
+                                </div>
+                            </div>
 
-                                {/* Technologies Grid */}
-                                <div className="flex flex-wrap gap-2 mb-5 flex-grow">
-                                    {project.technologies.map((tech, i) => (
+                            {/* Content - Compact */}
+                            <div className="p-4">
+                                <h3 className={`text-base font-semibold ${theme === 'dark' ? 'text-white' : 'text-dark'} mb-1.5 line-clamp-1 group-hover:text-violet transition-colors`}>
+                                    {project.title}
+                                </h3>
+                                
+                                <div className="flex items-center gap-2 mb-3">
+                                    <span className={`text-xs ${theme === 'dark' ? 'text-gray-custom' : 'text-gray-500'}`}>
+                                        {project.context === "Stage" && t.projects.context.stage}
+                                        {project.context === "Cours 1ere année" && t.projects.context.firstYear}
+                                        {project.context === "Cours 2eme année" && t.projects.context.secondYear}
+                                        {project.context === "Personnel" && t.projects.context.personal}
+                                    </span>
+                                    <span className={`w-1 h-1 rounded-full ${theme === 'dark' ? 'bg-gray-600' : 'bg-gray-300'}`} />
+                                    <span className={`text-xs ${theme === 'dark' ? 'text-gray-custom' : 'text-gray-500'}`}>
+                                        {project.date.split(' ').slice(-1)[0]}
+                                    </span>
+                                </div>
+
+                                {/* Technologies - Compact */}
+                                <div className="flex flex-wrap gap-1.5">
+                                    {project.technologies.slice(0, 3).map((tech, i) => (
                                         <span
                                             key={i}
-                                            className={`px-3 py-1.5 text-xs font-medium rounded-lg ${theme === 'dark' ? 'bg-dark text-gray-custom' : 'bg-gray-100 text-gray-700'} border ${theme === 'dark' ? 'border-violet/20' : 'border-gray-200'} hover:border-violet hover:text-violet transition-all duration-200 h-fit`}
+                                            className={`px-2 py-0.5 text-[10px] font-medium rounded ${theme === 'dark' ? 'bg-violet/10 text-violet/80' : 'bg-violet/5 text-violet'}`}
                                         >
                                             {tech}
                                         </span>
                                     ))}
+                                    {project.technologies.length > 3 && (
+                                        <span className={`px-2 py-0.5 text-[10px] font-medium rounded ${theme === 'dark' ? 'bg-dark text-gray-custom' : 'bg-gray-100 text-gray-500'}`}>
+                                            +{project.technologies.length - 3}
+                                        </span>
+                                    )}
                                 </div>
-
-                                {/* CTA Button */}
-                                <button
-                                    onClick={() => setSelectedProject(project)}
-                                    className="w-full py-3 bg-gradient-to-r from-violet via-purple-600 to-violet bg-size-200 bg-pos-0 hover:bg-pos-100 text-white rounded-xl font-semibold transition-all duration-500 flex items-center justify-center gap-2 shadow-lg shadow-violet/30 hover:shadow-xl hover:shadow-violet/50 group focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 focus:ring-offset-dark"
-                                    aria-label={`Voir les détails du projet ${project.title}`}
-                                >
-                                    <span>{language === 'fr' ? 'Voir le projet' : 'View project'}</span>
-                                    <FaExternalLinkAlt className="text-sm group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true" />
-                                </button>
                             </div>
                         </motion.div>
                     ))}

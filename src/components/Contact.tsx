@@ -66,8 +66,14 @@ export default function Contact() {
     };
 
     return (
-        <section id="contact" className={`py-20 ${theme === 'dark' ? 'bg-dark' : 'bg-white'}`}>
-            <div className="container-custom">
+        <section id="contact" className={`py-20 relative overflow-hidden ${theme === 'dark' ? 'bg-dark' : 'bg-white'}`}>
+            {/* Background decoration */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-violet/5 rounded-full filter blur-[100px]" />
+                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange/5 rounded-full filter blur-[100px]" />
+            </div>
+
+            <div className="container-custom relative z-10">
                 <motion.div
                     variants={titleVariants}
                     initial="hidden"
@@ -75,6 +81,14 @@ export default function Contact() {
                     viewport={{ once: false, margin: "-100px" }}
                     className="text-center mb-16"
                 >
+                    <motion.span 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        className={`inline-block px-4 py-2 ${theme === 'dark' ? 'bg-violet/10 border-violet/20' : 'bg-violet/5 border-violet/10'} border rounded-full text-violet text-sm font-medium mb-4`}
+                    >
+                        <FaEnvelope className="w-4 h-4 inline mr-2" />
+                        {language === 'fr' ? 'Contact' : 'Get in touch'}
+                    </motion.span>
                     <h2 className={`text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-dark'} mb-4`}>
                         {t.contact.title}
                     </h2>
@@ -94,54 +108,60 @@ export default function Contact() {
                         <motion.a
                             href="tel:+33612302068"
                             variants={cardVariants}
-                            whileHover={{ scale: 1.03, y: -2 }}
+                            whileHover={{ scale: 1.03, y: -4 }}
                             whileTap={{ scale: 0.98 }}
-                            className={`flex items-center gap-4 p-6 ${theme === 'dark' ? 'bg-dark/50' : 'bg-white'} rounded-2xl border ${theme === 'dark' ? 'border-violet/10' : 'border-gray-200'} hover:border-violet/30 transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 ${theme === 'dark' ? 'focus:ring-offset-dark' : 'focus:ring-offset-white'}`}
+                            className={`group flex items-center gap-4 p-6 ${theme === 'dark' ? 'bg-dark-light/50' : 'bg-white'} rounded-2xl border ${theme === 'dark' ? 'border-violet/10' : 'border-gray-200'} hover:border-violet/30 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-violet/10 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 ${theme === 'dark' ? 'focus:ring-offset-dark' : 'focus:ring-offset-white'} card-shine overflow-hidden`}
                             aria-label="M'appeler au 06 12 30 20 68"
                         >
                             <motion.div
                                 variants={iconVariants}
-                                className="p-4 bg-gradient-to-br from-violet/20 to-purple-500/20 rounded-xl"
+                                className="p-4 bg-gradient-to-br from-violet/20 to-purple-500/20 rounded-xl group-hover:scale-110 transition-transform duration-300"
                             >
                                 <FaPhone className="text-violet text-xl" aria-hidden="true" />
                             </motion.div>
                             <div className="text-left">
-                                <p className={`${theme === 'dark' ? 'text-white' : 'text-dark'} font-semibold text-base mb-1`}>
+                                <p className={`${theme === 'dark' ? 'text-white' : 'text-dark'} font-semibold text-base mb-1 group-hover:text-violet transition-colors`}>
                                     {t.contact.phone}
                                 </p>
                                 <p className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} text-sm`}>
                                     06 12 30 20 68
                                 </p>
                             </div>
+                            <svg className="w-5 h-5 text-violet opacity-0 group-hover:opacity-100 ml-auto transition-all duration-300 transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
                         </motion.a>
 
                         <motion.a
                             href="mailto:jordan.turnaco@protonmail.com"
                             variants={cardVariants}
-                            whileHover={{ scale: 1.03, y: -2 }}
+                            whileHover={{ scale: 1.03, y: -4 }}
                             whileTap={{ scale: 0.98 }}
-                            className={`flex items-center gap-4 p-6 ${theme === 'dark' ? 'bg-dark/50' : 'bg-white'} rounded-2xl border ${theme === 'dark' ? 'border-violet/10' : 'border-gray-200'} hover:border-violet/30 transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 ${theme === 'dark' ? 'focus:ring-offset-dark' : 'focus:ring-offset-white'}`}
+                            className={`group flex items-center gap-4 p-6 ${theme === 'dark' ? 'bg-dark-light/50' : 'bg-white'} rounded-2xl border ${theme === 'dark' ? 'border-violet/10' : 'border-gray-200'} hover:border-violet/30 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-violet/10 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 ${theme === 'dark' ? 'focus:ring-offset-dark' : 'focus:ring-offset-white'} card-shine overflow-hidden`}
                             aria-label="M'envoyer un email à jordan.turnaco@protonmail.com"
                         >
                             <motion.div
                                 variants={iconVariants}
-                                className="p-4 bg-gradient-to-br from-violet/20 to-purple-500/20 rounded-xl"
+                                className="p-4 bg-gradient-to-br from-violet/20 to-purple-500/20 rounded-xl group-hover:scale-110 transition-transform duration-300"
                             >
                                 <FaEnvelope className="text-violet text-xl" aria-hidden="true" />
                             </motion.div>
-                            <div className="text-left">
-                                <p className={`${theme === 'dark' ? 'text-white' : 'text-dark'} font-semibold text-base mb-1`}>
+                            <div className="text-left flex-1 min-w-0">
+                                <p className={`${theme === 'dark' ? 'text-white' : 'text-dark'} font-semibold text-base mb-1 group-hover:text-violet transition-colors`}>
                                     {t.contact.email}
                                 </p>
-                                <p className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} text-sm break-all`}>
+                                <p className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} text-sm truncate`}>
                                     jordan.turnaco@protonmail.com
                                 </p>
                             </div>
+                            <svg className="w-5 h-5 text-violet opacity-0 group-hover:opacity-100 ml-auto transition-all duration-300 transform group-hover:translate-x-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
                         </motion.a>
 
                         <motion.div
                             variants={cardVariants}
-                            className={`flex items-center gap-4 p-6 ${theme === 'dark' ? 'bg-dark/50' : 'bg-white'} rounded-2xl border ${theme === 'dark' ? 'border-violet/10' : 'border-gray-200'} shadow-lg backdrop-blur-sm`}
+                            className={`flex items-center gap-4 p-6 ${theme === 'dark' ? 'bg-dark-light/50' : 'bg-white'} rounded-2xl border ${theme === 'dark' ? 'border-violet/10' : 'border-gray-200'} shadow-lg backdrop-blur-sm`}
                         >
                             <motion.div
                                 variants={iconVariants}
@@ -164,25 +184,28 @@ export default function Contact() {
                             target="_blank"
                             rel="noopener noreferrer"
                             variants={cardVariants}
-                            whileHover={{ scale: 1.03, y: -2 }}
+                            whileHover={{ scale: 1.03, y: -4 }}
                             whileTap={{ scale: 0.98 }}
-                            className={`flex items-center gap-4 p-6 ${theme === 'dark' ? 'bg-dark/50' : 'bg-white'} rounded-2xl border ${theme === 'dark' ? 'border-violet/10' : 'border-gray-200'} hover:border-violet/30 transition-all duration-300 shadow-lg hover:shadow-xl backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 ${theme === 'dark' ? 'focus:ring-offset-dark' : 'focus:ring-offset-white'}`}
+                            className={`group flex items-center gap-4 p-6 ${theme === 'dark' ? 'bg-dark-light/50' : 'bg-white'} rounded-2xl border ${theme === 'dark' ? 'border-violet/10' : 'border-gray-200'} hover:border-violet/30 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-violet/10 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 ${theme === 'dark' ? 'focus:ring-offset-dark' : 'focus:ring-offset-white'} card-shine overflow-hidden`}
                             aria-label="Visiter mon profil LinkedIn"
                         >
                             <motion.div
                                 variants={iconVariants}
-                                className="p-4 bg-gradient-to-br from-violet/20 to-purple-500/20 rounded-xl"
+                                className="p-4 bg-gradient-to-br from-violet/20 to-purple-500/20 rounded-xl group-hover:scale-110 transition-transform duration-300"
                             >
                                 <FaLinkedin className="text-violet text-xl" aria-hidden="true" />
                             </motion.div>
                             <div className="text-left">
-                                <p className={`${theme === 'dark' ? 'text-white' : 'text-dark'} font-semibold text-base mb-1`}>
+                                <p className={`${theme === 'dark' ? 'text-white' : 'text-dark'} font-semibold text-base mb-1 group-hover:text-violet transition-colors`}>
                                     LinkedIn
                                 </p>
                                 <p className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} text-sm`}>
                                     Jordan TURNACO
                                 </p>
                             </div>
+                            <svg className="w-5 h-5 text-violet opacity-0 group-hover:opacity-100 ml-auto transition-all duration-300 transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
                         </motion.a>
                     </div>
 
@@ -199,27 +222,30 @@ export default function Contact() {
                         <div className="flex justify-center gap-4 flex-wrap">
                             <motion.span
                                 variants={cardVariants}
-                                whileHover={{ scale: 1.05, y: -2 }}
-                                className={`px-5 py-3 ${theme === 'dark' ? 'bg-dark/50' : 'bg-white'} rounded-2xl border ${theme === 'dark' ? 'border-violet/10' : 'border-gray-200'} shadow-lg backdrop-blur-sm`}
+                                whileHover={{ scale: 1.05, y: -3 }}
+                                className={`px-6 py-4 ${theme === 'dark' ? 'bg-dark-light/50' : 'bg-white'} rounded-2xl border ${theme === 'dark' ? 'border-violet/10' : 'border-gray-200'} shadow-lg backdrop-blur-sm hover:border-violet/30 transition-all duration-300`}
                             >
-                                <span className="text-violet font-semibold">{t.contact.french}:</span>
-                                <span className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} ml-2`}>{t.contact.native}</span>
+                                <span className="text-violet font-bold text-lg mb-1 block">FR</span>
+                                <span className="text-violet font-semibold block">{t.contact.french}</span>
+                                <span className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} text-sm`}>{t.contact.native}</span>
                             </motion.span>
                             <motion.span
                                 variants={cardVariants}
-                                whileHover={{ scale: 1.05, y: -2 }}
-                                className={`px-5 py-3 ${theme === 'dark' ? 'bg-dark/50' : 'bg-white'} rounded-2xl border ${theme === 'dark' ? 'border-violet/10' : 'border-gray-200'} shadow-lg backdrop-blur-sm`}
+                                whileHover={{ scale: 1.05, y: -3 }}
+                                className={`px-6 py-4 ${theme === 'dark' ? 'bg-dark-light/50' : 'bg-white'} rounded-2xl border ${theme === 'dark' ? 'border-violet/10' : 'border-gray-200'} shadow-lg backdrop-blur-sm hover:border-violet/30 transition-all duration-300`}
                             >
-                                <span className="text-violet font-semibold">{t.contact.english}:</span>
-                                <span className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} ml-2`}>C1 - B2</span>
+                                <span className="text-orange font-bold text-lg mb-1 block">EN</span>
+                                <span className="text-violet font-semibold block">{t.contact.english}</span>
+                                <span className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} text-sm`}>C1 - B2</span>
                             </motion.span>
                             <motion.span
                                 variants={cardVariants}
-                                whileHover={{ scale: 1.05, y: -2 }}
-                                className={`px-5 py-3 ${theme === 'dark' ? 'bg-dark/50' : 'bg-white'} rounded-2xl border ${theme === 'dark' ? 'border-violet/10' : 'border-gray-200'} shadow-lg backdrop-blur-sm`}
+                                whileHover={{ scale: 1.05, y: -3 }}
+                                className={`px-6 py-4 ${theme === 'dark' ? 'bg-dark-light/50' : 'bg-white'} rounded-2xl border ${theme === 'dark' ? 'border-violet/10' : 'border-gray-200'} shadow-lg backdrop-blur-sm hover:border-violet/30 transition-all duration-300`}
                             >
-                                <span className="text-violet font-semibold">{t.contact.spanish}:</span>
-                                <span className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} ml-2`}>B1</span>
+                                <span className="text-pink-500 font-bold text-lg mb-1 block">ES</span>
+                                <span className="text-violet font-semibold block">{t.contact.spanish}</span>
+                                <span className={`${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} text-sm`}>B1</span>
                             </motion.span>
                         </div>
                     </motion.div>

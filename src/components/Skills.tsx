@@ -166,8 +166,14 @@ export default function Skills() {
     };
 
     return (
-        <section id="skills" className={`py-20 ${theme === 'dark' ? 'bg-dark' : 'bg-gray-50'}`}>
-            <div className="container-custom">
+        <section id="skills" className={`py-20 relative overflow-hidden ${theme === 'dark' ? 'bg-dark' : 'bg-gray-50'}`}>
+            {/* Background decoration */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-1/4 -left-32 w-64 h-64 bg-violet/5 rounded-full filter blur-3xl" />
+                <div className="absolute bottom-1/4 -right-32 w-64 h-64 bg-orange/5 rounded-full filter blur-3xl" />
+            </div>
+
+            <div className="container-custom relative z-10">
                 <motion.div
                     variants={cardVariants}
                     initial="hidden"
@@ -175,6 +181,14 @@ export default function Skills() {
                     viewport={{ once: false }}
                     className="text-center mb-16"
                 >
+                    <motion.span 
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        className={`inline-block px-4 py-2 ${theme === 'dark' ? 'bg-violet/10 border-violet/20' : 'bg-violet/5 border-violet/10'} border rounded-full text-violet text-sm font-medium mb-4 gap-2 items-center`}
+                    >
+                        <FaCode className="w-4 h-4 inline mr-2" />
+                        {language === 'fr' ? 'Compétences' : 'Skills'}
+                    </motion.span>
                     <h2 className={`text-3xl md:text-4xl font-bold ${theme === 'dark' ? 'text-white' : 'text-dark'} mb-4`}>
                         {t.skills.title}
                     </h2>
@@ -194,28 +208,38 @@ export default function Skills() {
                         <motion.div
                             key={index}
                             variants={cardVariants}
-                            className={`${
-                                theme === 'dark' ? 'bg-dark' : 'bg-white'
-                            } p-8 rounded-2xl border ${
-                                theme === 'dark' ? 'border-violet/20' : 'border-gray-200'
-                            } hover:border-violet/50 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-violet/10`}
+                            whileHover={{ y: -5 }}
+                            className={`group relative ${
+                                theme === 'dark' ? 'bg-dark-light/50' : 'bg-white'
+                            } p-8 rounded-2xl transition-all duration-500 card-shine overflow-hidden`}
                         >
+                            {/* Gradient border effect */}
+                            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-violet/20 via-transparent to-orange/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+                            <div className={`absolute inset-[1px] rounded-2xl ${theme === 'dark' ? 'bg-dark-light' : 'bg-white'} -z-10`} />
+                            
+                            {/* Border */}
+                            <div className={`absolute inset-0 rounded-2xl border ${theme === 'dark' ? 'border-violet/10 group-hover:border-violet/30' : 'border-gray-200 group-hover:border-violet/30'} transition-all duration-500 pointer-events-none`} />
+                            
+                            {/* Glow effect */}
+                            <div className="absolute -inset-1 bg-gradient-to-r from-violet to-orange rounded-2xl opacity-0 group-hover:opacity-10 blur-xl transition-opacity duration-500" />
+
                             <motion.div
                                 initial="hidden"
                                 whileInView="visible"
                                 viewport={{ once: false }}
-                                className="flex items-center gap-4 mb-6 pb-4 border-b border-violet/20"
+                                className={`flex items-center gap-4 mb-6 pb-4 border-b ${theme === 'dark' ? 'border-violet/10' : 'border-gray-100'}`}
                             >
                                 <motion.div 
                                     variants={iconVariants}
-                                    className="p-3 bg-violet/10 rounded-xl"
+                                    whileHover={{ rotate: 10, scale: 1.1 }}
+                                    className="p-4 bg-gradient-to-br from-violet/10 to-purple-500/10 rounded-xl border border-violet/10"
                                 >
                                     {category.icon}
                                 </motion.div>
                                 <div>
                                     <motion.h3
                                         variants={skillItemVariants}
-                                        className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-dark'}`}
+                                        className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-dark'} group-hover:text-violet transition-colors duration-300`}
                                     >
                                         {t.skills.categories[category.category]}
                                     </motion.h3>
@@ -233,22 +257,27 @@ export default function Skills() {
                                         key={techIndex}
                                         variants={levelBadgeVariants}
                                         custom={techIndex}
-                                        whileHover={{ scale: 1.05, y: -2 }}
-                                        className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-                                            theme === 'dark' ? 'bg-dark-lighter' : 'bg-gray-50'
+                                        whileHover={{ scale: 1.08, y: -3 }}
+                                        className={`flex items-center gap-2 px-4 py-2.5 rounded-xl ${
+                                            theme === 'dark' ? 'bg-dark/50' : 'bg-gray-50'
                                         } border ${
                                             theme === 'dark' ? 'border-violet/10' : 'border-gray-200'
-                                        } hover:border-violet/50 transition-all duration-300 cursor-pointer group`}
+                                        } hover:border-violet/50 hover:shadow-lg hover:shadow-violet/10 transition-all duration-300 cursor-default group/tech`}
                                     >
                                         <motion.span
                                             variants={iconVariants}
-                                            className="text-violet text-xl group-hover:scale-110 transition-transform"
+                                            className="text-violet text-xl group-hover/tech:scale-110 group-hover/tech:rotate-12 transition-transform duration-300"
                                         >
                                             {tech.icon}
                                         </motion.span>
-                                        <span className={`text-sm font-medium ${theme === 'dark' ? 'text-gray-custom' : 'text-gray-700'}`}>
+                                        <span className={`text-sm font-medium ${theme === 'dark' ? 'text-gray-custom group-hover/tech:text-white' : 'text-gray-700 group-hover/tech:text-dark'} transition-colors duration-300`}>
                                             {tech.name}
                                         </span>
+                                        {/* Level indicator */}
+                                        <span className={`w-2 h-2 rounded-full ${
+                                            tech.level === 'advanced' ? 'bg-green-500' :
+                                            tech.level === 'intermediate' ? 'bg-violet' : 'bg-orange'
+                                        }`} title={t.skills.levels[tech.level]} />
                                     </motion.div>
                                 ))}
                             </motion.div>

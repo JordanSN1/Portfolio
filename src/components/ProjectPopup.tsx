@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaGithub, FaYoutube, FaTimes, FaStar, FaCalendar, FaAward } from 'react-icons/fa';
+import { FaGithub, FaYoutube, FaTimes, FaLock, FaExternalLinkAlt, FaCode, FaClock, FaGraduationCap } from 'react-icons/fa';
+import { IoClose } from 'react-icons/io5';
 import Image from 'next/image';
 import { useTheme } from '@/context/ThemeContext';
 import { useEffect } from 'react';
@@ -33,7 +34,6 @@ export default function ProjectPopup({ isOpen, onClose, project }: ProjectPopupP
 
         if (isOpen) {
             document.addEventListener('keydown', handleEscape);
-            // Empêcher le scroll du body quand le modal est ouvert
             document.body.style.overflow = 'hidden';
         }
 
@@ -47,121 +47,131 @@ export default function ProjectPopup({ isOpen, onClose, project }: ProjectPopupP
 
     return (
         <AnimatePresence>
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+                {/* Backdrop */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="fixed inset-0 bg-black/70 backdrop-blur-sm"
+                    className="fixed inset-0 bg-black/80 backdrop-blur-md"
                     onClick={onClose}
                 />
+                
+                {/* Modal Container */}
                 <motion.div
-                    initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                    initial={{ scale: 0.95, opacity: 0, y: 30 }}
                     animate={{ scale: 1, opacity: 1, y: 0 }}
-                    exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                    transition={{ type: "spring", duration: 0.5 }}
+                    exit={{ scale: 0.95, opacity: 0, y: 30 }}
+                    transition={{ type: "spring", duration: 0.4, bounce: 0.2 }}
                     className={`relative ${
-                        theme === 'dark' ? 'bg-dark' : 'bg-white'
-                    } rounded-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto shadow-2xl border ${
+                        theme === 'dark' ? 'bg-dark-light' : 'bg-white'
+                    } rounded-2xl max-w-3xl w-full max-h-[85vh] overflow-hidden shadow-2xl border ${
                         theme === 'dark' ? 'border-violet/20' : 'border-gray-200'
                     }`}
                 >
-                    {/* Close Button */}
-                    <button
-                        onClick={onClose}
-                        className={`absolute top-4 right-4 z-10 p-2 rounded-full ${
-                            theme === 'dark' ? 'bg-dark-light hover:bg-violet/20' : 'bg-gray-100 hover:bg-gray-200'
-                        } transition-colors focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 ${theme === 'dark' ? 'focus:ring-offset-dark' : 'focus:ring-offset-white'}`}
-                        aria-label="Fermer la fenêtre"
-                    >
-                        <FaTimes className={theme === 'dark' ? 'text-white' : 'text-dark'} aria-hidden="true" />
-                    </button>
-
-                    {/* Image Header */}
-                    <div className="relative h-64 w-full overflow-hidden rounded-t-2xl">
+                    {/* Header with Image */}
+                    <div className="relative h-48 md:h-56 overflow-hidden">
                         <Image
                             src={project.image}
                             alt={project.title}
                             fill
                             className="object-cover"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                        {/* Gradient overlay */}
+                        <div className={`absolute inset-0 ${theme === 'dark' ? 'bg-gradient-to-b from-transparent via-dark-light/50 to-dark-light' : 'bg-gradient-to-b from-transparent via-white/50 to-white'}`} />
                         
-                        {/* Title on Image */}
-                        <div className="absolute bottom-6 left-6 right-6">
-                            <h2 id="project-modal-title" className="text-3xl font-bold text-white mb-2">
-                                {project.title}
-                            </h2>
-                            <div className="flex flex-wrap gap-2">
-                                <span className="px-3 py-1 bg-violet/80 backdrop-blur-sm text-white rounded-full text-sm flex items-center gap-1">
-                                    <FaCalendar className="text-xs" aria-hidden="true" />
-                                    {project.date}
+                        {/* Close button */}
+                        <button
+                            onClick={onClose}
+                            className={`absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center ${
+                                theme === 'dark' ? 'bg-dark/60 hover:bg-dark/80 text-white' : 'bg-white/60 hover:bg-white/80 text-dark'
+                            } backdrop-blur-sm transition-all duration-200 border ${theme === 'dark' ? 'border-white/10' : 'border-black/5'}`}
+                            aria-label="Fermer"
+                        >
+                            <IoClose className="text-xl" />
+                        </button>
+
+                        {/* Grade badge if exists */}
+                        {project.grade && (
+                            <div className="absolute top-4 left-4">
+                                <span className="px-3 py-1.5 bg-orange text-white rounded-lg text-sm font-bold shadow-lg">
+                                    {project.grade}
                                 </span>
-                                <span className="px-3 py-1 bg-orange/80 backdrop-blur-sm text-white rounded-full text-sm">
-                                    {project.context}
-                                </span>
-                                {project.grade && (
-                                    <span className="px-3 py-1 bg-green-500/80 backdrop-blur-sm text-white rounded-full text-sm flex items-center gap-1">
-                                        <FaAward className="text-xs" aria-hidden="true" />
-                                        {project.grade}
-                                    </span>
-                                )}
                             </div>
-                        </div>
+                        )}
                     </div>
 
                     {/* Content */}
-                    <div className="p-8">
-                        {/* Description */}
+                    <div className="px-6 pb-6 -mt-8 relative">
+                        {/* Title section */}
                         <div className="mb-6">
-                            <h3 className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-dark'} mb-4 flex items-center gap-2`}>
-                                <FaStar className="text-violet" aria-hidden="true" />
-                                {language === 'fr' ? 'Description' : 'Description'}
-                            </h3>
-                            <ul className="space-y-3">
-                                {project.description.map((item, index) => (
-                                    <li
-                                        key={index}
-                                        className={`flex items-start gap-3 ${
-                                            theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'
-                                        }`}
-                                    >
-                                        <span className="text-violet mt-1" aria-hidden="true">•</span>
-                                        <span>{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        {/* Technologies */}
-                        <div className="mb-6">
-                            <h3 className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-dark'} mb-4`}>
-                                {language === 'fr' ? 'Technologies utilisées' : 'Technologies used'}
-                            </h3>
-                            <div className="flex flex-wrap gap-2">
-                                {project.technologies.map((tech, index) => (
-                                    <span
-                                        key={index}
-                                        className="px-4 py-2 bg-violet/10 text-violet rounded-lg font-medium hover:bg-violet/20 transition-colors"
-                                    >
-                                        {tech}
-                                    </span>
-                                ))}
+                            <h2 id="project-modal-title" className={`text-2xl md:text-3xl font-bold ${theme === 'dark' ? 'text-white' : 'text-dark'} mb-3`}>
+                                {project.title}
+                            </h2>
+                            
+                            {/* Meta info */}
+                            <div className="flex flex-wrap gap-3">
+                                <span className={`inline-flex items-center gap-1.5 text-sm ${theme === 'dark' ? 'text-gray-custom' : 'text-gray-500'}`}>
+                                    <FaClock className="text-violet text-xs" />
+                                    {project.date}
+                                </span>
+                                <span className={`inline-flex items-center gap-1.5 text-sm ${theme === 'dark' ? 'text-gray-custom' : 'text-gray-500'}`}>
+                                    <FaGraduationCap className="text-violet text-xs" />
+                                    {project.context}
+                                </span>
                             </div>
                         </div>
 
-                        {/* Links */}
-                        <div className="flex flex-wrap gap-4 pt-6 border-t border-violet/10">
-                            {project.github && (
+                        {/* Scrollable content area */}
+                        <div className="max-h-[40vh] overflow-y-auto pr-2 space-y-6 custom-scrollbar">
+                            {/* Description */}
+                            <div>
+                                <h3 className={`text-sm font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-violet' : 'text-violet'} mb-3`}>
+                                    {language === 'fr' ? 'À propos' : 'About'}
+                                </h3>
+                                <div className={`space-y-2 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}`}>
+                                    {project.description.map((item, index) => (
+                                        <p key={index} className="text-sm leading-relaxed">
+                                            {item}
+                                        </p>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Technologies */}
+                            <div>
+                                <h3 className={`text-sm font-semibold uppercase tracking-wider ${theme === 'dark' ? 'text-violet' : 'text-violet'} mb-3 flex items-center gap-2`}>
+                                    <FaCode className="text-xs" />
+                                    {language === 'fr' ? 'Technologies' : 'Tech Stack'}
+                                </h3>
+                                <div className="flex flex-wrap gap-2">
+                                    {project.technologies.map((tech, index) => (
+                                        <span
+                                            key={index}
+                                            className={`px-3 py-1.5 text-xs font-medium rounded-lg ${
+                                                theme === 'dark' 
+                                                    ? 'bg-violet/10 text-violet border border-violet/20' 
+                                                    : 'bg-violet/5 text-violet border border-violet/10'
+                                            }`}
+                                        >
+                                            {tech}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Action buttons - Fixed at bottom */}
+                        <div className={`mt-6 pt-5 border-t ${theme === 'dark' ? 'border-white/10' : 'border-gray-100'} flex flex-wrap gap-3`}>
+                            {project.github && !project.isPrivate && (
                                 <a
                                     href={project.github}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-6 py-3 bg-violet hover:bg-violet/90 text-white rounded-lg transition-all duration-300 shadow-lg shadow-violet/20 focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 focus:ring-offset-dark"
-                                    aria-label="Voir le projet sur GitHub"
+                                    className="flex-1 min-w-[140px] flex items-center justify-center gap-2 px-5 py-3 bg-violet hover:bg-violet/90 text-white rounded-xl font-medium transition-all duration-200 hover:shadow-lg hover:shadow-violet/25"
                                 >
-                                    <FaGithub className="text-xl" aria-hidden="true" />
-                                    GitHub
+                                    <FaGithub className="text-lg" />
+                                    {language === 'fr' ? 'Voir le code' : 'View Code'}
                                 </a>
                             )}
                             {project.youtube && (
@@ -169,19 +179,26 @@ export default function ProjectPopup({ isOpen, onClose, project }: ProjectPopupP
                                     href={project.youtube}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-all duration-300 shadow-lg shadow-red-600/20 focus:outline-none focus:ring-2 focus:ring-orange focus:ring-offset-2 focus:ring-offset-dark"
-                                    aria-label="Voir la vidéo du projet sur YouTube"
+                                    className="flex-1 min-w-[140px] flex items-center justify-center gap-2 px-5 py-3 bg-red-500 hover:bg-red-600 text-white rounded-xl font-medium transition-all duration-200 hover:shadow-lg hover:shadow-red-500/25"
                                 >
-                                    <FaYoutube className="text-xl" aria-hidden="true" />
-                                    {language === 'fr' ? 'Voir la vidéo' : 'Watch video'}
+                                    <FaYoutube className="text-lg" />
+                                    {language === 'fr' ? 'Vidéo' : 'Video'}
                                 </a>
                             )}
                             {project.isPrivate && (
-                                <span className={`flex items-center gap-2 px-6 py-3 ${
-                                    theme === 'dark' ? 'bg-dark-light' : 'bg-gray-100'
-                                } ${theme === 'dark' ? 'text-gray-custom' : 'text-gray-600'} rounded-lg`}>
-                                    <span aria-hidden="true">🔒</span> {language === 'fr' ? 'Repository privé' : 'Private repository'}
-                                </span>
+                                <div className={`flex-1 min-w-[140px] flex items-center justify-center gap-2 px-5 py-3 ${
+                                    theme === 'dark' ? 'bg-dark text-gray-custom' : 'bg-gray-100 text-gray-500'
+                                } rounded-xl font-medium`}>
+                                    <FaLock className="text-sm" />
+                                    {language === 'fr' ? 'Privé' : 'Private'}
+                                </div>
+                            )}
+                            {!project.github && !project.youtube && !project.isPrivate && (
+                                <div className={`flex-1 flex items-center justify-center gap-2 px-5 py-3 ${
+                                    theme === 'dark' ? 'bg-dark text-gray-custom' : 'bg-gray-100 text-gray-500'
+                                } rounded-xl font-medium`}>
+                                    {language === 'fr' ? 'Pas de liens disponibles' : 'No links available'}
+                                </div>
                             )}
                         </div>
                     </div>
